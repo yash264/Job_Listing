@@ -11,6 +11,14 @@ const userSchema = new mongoose.Schema(
         required: true,
         unique: true
     },
+    profilePic:{
+        type: String
+    },
+    type: {
+        type: String,
+        enum: ["jobseeker", "jobprovider"],
+        required: true
+    },
     gender: {
         type: String
     },

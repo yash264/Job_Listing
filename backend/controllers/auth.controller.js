@@ -2,6 +2,7 @@ import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
 import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
 
 import UserData from "../models/auth.model.js";
 
@@ -14,21 +15,24 @@ dotenv.config({ path: path.resolve(__dirname, "../.env") });
 // REGISTER
 export const register = async (req, res) => {
     try {
-        const { name, email, password } = req.body.payload;
+        const { name, email, password, type } = req.body.payload;
 
         const ifExists = await UserData.findOne({ email: email });
 
         if (ifExists) {
-            return res.status(201).json({
+            return res.status(400).json({
                 success: false,
                 message: "Email Already Exists"
             });
         }
 
-        const registerPerson = new JobSeekerData({
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        const registerPerson = new UserData({
             name,
             email,
-            password
+            password: hashedPassword,
+            type
         });
 
         await registerPerson.save();
@@ -40,6 +44,11 @@ export const register = async (req, res) => {
 
     } catch (error) {
         console.log(error);
+
+        res.status(500).json({
+            success: false,
+            message: "Server Error"
+        });
     }
 };
 
@@ -47,7 +56,7 @@ export const register = async (req, res) => {
 // LOGIN
 export const login = async (req, res) => {
     try {
-        const { email, password } = req.body.payload;
+        const { email, password, type } = req.body.payload;
 
         const ifExists = await UserData.findOne({ email: email });
 
@@ -58,31 +67,46 @@ export const login = async (req, res) => {
             });
         }
 
-        if (ifExists.password === password) {
-
-            const token = jwt.sign(
-                {
-                    id: ifExists._id,
-                    email: ifExists.email
-                },
-                process.env.jwt_secret,
-                { expiresIn: "30d" }
-            );
-
-            res.json({
-                success: true,
-                message: token
+        if (ifExists.type !== type) {
+            return res.json({
+                success: false,
+                message: "Invalid user type"
             });
+        }
 
-        } else {
-            res.json({
+        const isMatch = await bcrypt.compare(password, ifExists.password);
+
+        if (!isMatch) {
+            return res.json({
                 success: false,
                 message: "Incorrect Password"
             });
         }
 
+        // CREATE TOKEN
+        const token = jwt.sign(
+            {
+                id: ifExists._id,
+                email: ifExists.email,
+                type: ifExists.type
+            },
+            process.env.JWT_SECRET,
+            { expiresIn: "30d" }
+        );
+
+        res.json({
+            success: true,
+            token,
+            message: "Login Successfull"
+        });
+
     } catch (error) {
         console.log(error);
+
+        res.status(500).json({
+            success: false,
+            message: "Server Error"
+        });
     }
 };
 
@@ -102,7 +126,7 @@ export const verifyToken = async (req, res) => {
 
         return res.json({
             valid: true,
-            message: "verfied successfully"
+            message: "Verfied Successfully"
         });
     });
 };
@@ -112,16 +136,28 @@ export const verifyToken = async (req, res) => {
 export const fetchUser = async (req, res) => {
     try {
         const fetchUserData = await UserData
-            .findOne({ _id: req.user.id })
+            .findById({ _id: req.user.id })
             .select("-password");
 
-        res.status(201).json({
+        if (!fetchUserData) {
+            return res.status(404).json({
+                success: false,
+                message: "User Not Found"
+            });
+        }
+
+        res.status(200).json({
             success: true,
             message: fetchUserData,
         });
 
     } catch (error) {
         console.log(error);
+
+        res.status(500).json({
+            success: false,
+            message: "Server Error"
+        });
     }
 };
 
@@ -129,23 +165,29 @@ export const fetchUser = async (req, res) => {
 // UPDATE USER
 export const updateUser = async (req, res) => {
     try {
-        const updatedUser = await UserData.updateMany(
+        await UserData.findByIdAndUpdate(
             { _id: req.user.id },
             {
-                name: req.body.name,
                 gender: req.body.gender,
                 mobile: req.body.mobile,
                 qualification: req.body.qualification,
                 homeTown: req.body.homeTown,
-            }
-        );
+                profilePic: req.body.profilePic
+            },
+            { new: true }
+        ).select("-password");
 
-        res.status(201).json({
+        res.status(200).json({
             success: true,
-            message: "profile updated",
+            message: "Profile Updated Successfully",
         });
 
     } catch (error) {
         console.log(error);
+
+        res.status(500).json({
+            success: false,
+            message: "Server Error"
+        });
     }
 };
