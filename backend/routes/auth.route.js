@@ -1,6 +1,6 @@
 import express from "express";
 
-import { register, login, verifyToken, updateUser, fetchUser } from "../controller/JobSeeker.controller.js";
+import { register, login, verifyToken, updateUser, fetchUser } from "../controllers/auth.controller.js";
 import authenticateUser from "../middleware/auth.middleware.js";
 
 const Users = express.Router();
