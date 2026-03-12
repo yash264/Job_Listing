@@ -6,6 +6,8 @@ import { fileURLToPath } from "url";
 
 import connectDB from "./connection.js";
 import Users from "./routes/auth.route.js";
+import Recruitment from "./routes/recruitment.route.js";
+import Application from "./routes/application.route.js";
 
 const PORT = process.env.PORT
 dotenv.config();
@@ -32,6 +34,8 @@ app.use(express.urlencoded({ extended: true }));
 
 // APIs to call
 app.use("/api", Users)
+app.use("/api", Recruitment)
+app.use("/api", Application)
 
 
 app.listen(PORT, () => {
