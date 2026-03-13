@@ -1,0 +1,4 @@
+[
+  { "id": 1, "name": "Dhruti Sharma", "role": "Frontend Developer", "experience": "3 years", "location": "Kanpur, India", "skills": "React, Tailwind, Firebase" },
+  { "id": 2, "name": "Rahul Verma", "role": "Backend Engineer", "experience": "5 years", "location": "Delhi, India", "skills": "Node.js, Express, MongoDB" }
+]
