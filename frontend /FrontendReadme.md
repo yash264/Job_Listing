@@ -83,6 +83,7 @@ This makes VITEAPIBASE_URL=http://localhost:4000/api usable for UI testing.
 
 ---
 
+
 Key commands
 `bash
 
@@ -106,4 +107,52 @@ Notes
 - Ensure CORS is enabled on the backend for http://localhost:5173 when testing locally.  
 - If module type warnings appear, add "type": "module" to frontend/package.json or adjust config filenames to .cjs.
 
+---Quick verification commands (run from repo root)
+`bash
+
+show key files and confirm presence
+ls -la frontend
+ls -la frontend/src
+sed -n '1,120p' frontend/index.html
+sed -n '1,160p' frontend/src/main.jsx
+sed -n '1,240p' frontend/src/App.jsx
+sed -n '1,200p' frontend/package.json
+
+install and start dev server
+cd frontend
+npm install
+npx vite --host 0.0.0.0 --port 5173 2>&1 | tee vite-start.log
+
+Common problems and single-line fixes
+- Missing #root in index.html:
+  `html
+  <div id="root"></div>
+  `
+- Dependency missing (example react-router-dom):
+  `bash
+  cd frontend && npm install react-router-dom
+  `
+- Vite bound to localhost only (not exposed):
+  `bash
+  npx vite --host 0.0.0.0 --port 5173
+  `
+- Import path error (e.g., ./App not found): open src/main.jsx and ensure import App from './App'; matches src/App.jsx filename and casing.
+- CSS import fails: ensure src/index.css exists and path in main.jsx is import './index.css';.
+- API calls failing in browser (CORS or wrong URL): set frontend/.env:
+  `
+  VITEAPIBASE_URL=http://localhost:4000/api
+  `
+  then restart dev server.
+
 ---
+
+4. Runtime checks in browser and terminal
+- Browser: open http://localhost:5173 and check DevTools → Console for errors and Network for failing API calls.  
+- Terminal: if Vite starts, confirm it prints Local: http://localhost:5173/ and Network: http://0.0.0.0:5173/.  
+- API: from the Codespace or machine run:
+`bash
+curl -i http://localhost:4000/api/fetchJob
+`
+If it returns 200/JSON, backend is reachable.
+
+Frontend__
