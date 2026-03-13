@@ -1,7 +1,10 @@
-HireSathi Frontend README
+HireSathi Frontend README:
 
-Frontend Structure
+
+Frontend Structure  
+
 `
+
 frontend/
 ├─ public/
 │  └─ index.html
@@ -31,7 +34,8 @@ frontend/
 └─ .env
 `
 
-Project
+
+
 HireSathi Frontend — React + Vite single page application for job listings and candidate management. This README gives a copy‑paste ready guide to get the frontend running locally, build for production, and follow a clear zero to hero workflow from a fresh machine to a deployed build.
 
 ---
