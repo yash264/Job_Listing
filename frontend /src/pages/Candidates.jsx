@@ -1,32 +1,37 @@
-import { useEffect, useState } from "react";
-import { Card } from "../components/ui/Card";
-import { Button } from "../components/ui/Button";
-import { apiFetch } from "../utils/api";
-import mockCandidates from "../data/candidates.json";
+import React, { useEffect, useState } from 'react';
+import Card from '../components/ui/Card';
+import { fetchCandidates } from '../utils/api';
+import { Link } from 'react-router-dom';
 
 export default function Candidates() {
   const [candidates, setCandidates] = useState([]);
 
   useEffect(() => {
-    let mounted = true;
-    apiFetch("/fetchCandidates")
-      .then(data => { if (mounted && Array.isArray(data)) setCandidates(data); })
-      .catch(() => { setCandidates(mockCandidates); });
-    return () => (mounted = false);
+    fetchCandidates()
+      .then(res => {
+        const data = res.data || {};
+        const list = Array.isArray(data) ? data : data.candidates || [];
+        setCandidates(list);
+      })
+      .catch(() => setCandidates([]));
   }, []);
 
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-4">Candidates</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <h1 className="text-2xl font-bold mb-4">Candidates</h1>
+      <div className="space-y-3">
+        {candidates.length === 0 && <Card>No candidates found</Card>}
         {candidates.map(c => (
           <Card key={c._id || c.id}>
-            <h3 className="font-semibold">{c.name}</h3>
-            <p>{c.role}</p>
-            <p>Experience: {c.experience}</p>
-            <div className="mt-2">
-              <a href={`/candidates/${c.id || c._id}`}><Button variant="secondary" size="sm">View Profile</Button></a>
-            </div>
+            <Link to={`/candidates/${c._id || c.id}`} className="block">
+              <div className="flex justify-between">
+                <div>
+                  <h3 className="font-semibold">{c.name}</h3>
+                  <p className="text-sm text-gray-600">{c.title || c.currentRole}</p>
+                </div>
+                <div className="text-sm text-gray-500">{c.location}</div>
+              </div>
+            </Link>
           </Card>
         ))}
       </div>
