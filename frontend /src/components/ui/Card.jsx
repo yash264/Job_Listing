@@ -1,8 +1,8 @@
-import { cn } from "../../utils/cn";
+import React from 'react';
 
-export function Card({ className, children, ...props }) {
+export default function Card({ children, className = '' }) {
   return (
-    <div className={cn("rounded-[var(--radius)] border border-border bg-card p-4 shadow-sm", className)} {...props}>
+    <div className={`bg-white shadow-sm rounded p-4 ${className}`}>
       {children}
     </div>
   );
