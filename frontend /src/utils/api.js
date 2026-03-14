@@ -7,14 +7,17 @@ const client = axios.create({
   timeout: 10000
 });
 
-// Attach JWT if present
-client.interceptors.request.use(config => {
-  const token = localStorage.getItem('token'); // or your auth store
-  if (token) config.headers.Authorization = `Bearer ${token}`;
+// Attach JWT token from localStorage if present
+client.interceptors.request.use((config) => {
+  const token = localStorage.getItem('token');
+  if (token) {
+    config.headers = config.headers || {};
+    config.headers.Authorization = `Bearer ${token}`;
+  }
   return config;
-});
+}, (error) => Promise.reject(error));
 
-// Provider
+// Provider endpoints
 export async function createJob(payload) {
   return client.post('/jobCreate', payload);
 }
@@ -31,14 +34,13 @@ export async function acceptConfirmation(jobRefId) {
   return client.post('/acceptConfirmation', { jobRefId });
 }
 
-// Job seeker
+// Job seeker endpoints
 export async function fetchNotification() {
   return client.get('/fetchNotification');
 }
 export async function applicationForm(id, refId) {
   return client.post('/applicationForm', { id, refId });
 }
-// submitForm expects file + text -> use FormData
 export async function submitForm({ jobRefId, documentFile, yourSelf }) {
   const fd = new FormData();
   fd.append('jobRefId', jobRefId);
