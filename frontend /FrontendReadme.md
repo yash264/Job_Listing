@@ -44,7 +44,7 @@ cd HireSathi
 2. Switch to a working branch
 `bash
 git fetch origin
-git checkout -b feat/frontend-final
+git checkout -b anshikacommit
 cd frontend
 `
 
