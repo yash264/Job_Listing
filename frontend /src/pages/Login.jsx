@@ -1,53 +1,39 @@
-import { useState } from "react";
-import { Button } from "../components/ui/Button";
-import { apiFetch } from "../utils/api";
+import React, { useState } from 'react';
+import Button from '../components/ui/Button';
+import client from '../utils/api';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [type, setType] = useState("seeker");
-  const [error, setError] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();
-    setError("");
     try {
-      const res = await apiFetch("/login", {
-        method: "POST",
-        body: JSON.stringify({ email, password, type })
-      });
-      if (res.token) {
-        localStorage.setItem("hs_token", res.token);
-        window.location.href = "/dashboard";
+      const res = await client.post('/login', { email, password });
+      const token = res.data?.token || res.data?.accessToken;
+      if (token) {
+        localStorage.setItem('token', token);
+        navigate('/');
       } else {
-        setError("Login failed");
+        alert('Login succeeded but no token returned');
       }
     } catch (err) {
-      setError(err.message || "Login error");
+      alert('Login failed');
     }
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4">
-      <div className="w-full max-w-md p-6 rounded bg-card border border-border">
-        <h2 className="text-2xl font-bold mb-4">Sign In</h2>
-        <form className="space-y-4" onSubmit={handleSubmit}>
-          <input value={email} onChange={e => setEmail(e.target.value)} type="email" placeholder="Email" className="w-full p-2 rounded bg-input" required />
-          <input value={password} onChange={e => setPassword(e.target.value)} type="password" placeholder="Password" className="w-full p-2 rounded bg-input" required />
-          <div className="flex gap-2 items-center">
-            <label className="text-sm">Role:</label>
-            <select value={type} onChange={e => setType(e.target.value)} className="p-2 rounded bg-input">
-              <option value="seeker">Job Seeker</option>
-              <option value="provider">Job Provider</option>
-            </select>
-          </div>
-          {error && <div className="text-destructive text-sm">{error}</div>}
-          <Button className="w-full" type="submit">Sign In</Button>
-        </form>
-        <div className="mt-4 text-sm text-muted-foreground">
-          Don’t have an account? <a href="/signup" className="text-primary">Sign up</a>
-        </div>
-      </div>
+    <div className="max-w-md mx-auto">
+      <h1 className="text-2xl font-bold mb-4">Login</h1>
+      <form onSubmit={handleSubmit} className="bg-white p-6 rounded shadow">
+        <label className="block mb-2">Email</label>
+        <input value={email} onChange={e => setEmail(e.target.value)} className="w-full border p-2 mb-4" />
+        <label className="block mb-2">Password</label>
+        <input type="password" value={password} onChange={e => setPassword(e.target.value)} className="w-full border p-2 mb-4" />
+        <Button type="submit">Sign in</Button>
+      </form>
     </div>
   );
 }
