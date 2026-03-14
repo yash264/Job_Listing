@@ -1,31 +1,33 @@
-import { useEffect, useState } from "react";
-import { Card } from "../components/ui/Card";
-import { Button } from "../components/ui/Button";
-import { apiFetch } from "../utils/api";
-import mockJobs from "../data/jobs.json";
+import React, { useEffect, useState } from 'react';
+import Card from '../components/ui/Card';
+import { fetchJobs } from '../utils/api';
 
 export default function Jobs() {
   const [jobs, setJobs] = useState([]);
 
   useEffect(() => {
-    let mounted = true;
-    apiFetch("/fetchJob")
-      .then(data => { if (mounted && Array.isArray(data)) setJobs(data); })
-      .catch(() => { setJobs(mockJobs); });
-    return () => (mounted = false);
+    fetchJobs()
+      .then(res => {
+        const data = res.data || {};
+        const list = Array.isArray(data) ? data : data.jobs || [];
+        setJobs(list);
+      })
+      .catch(() => setJobs([]));
   }, []);
 
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-4">Job Listings</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {jobs.map(job => (
+      <h1 className="text-2xl font-bold mb-4">Jobs</h1>
+      <div className="space-y-3">
+        {jobs.length === 0 && <Card>No jobs found</Card>}
+        {jobs.map((job) => (
           <Card key={job._id || job.id}>
-            <h3 className="font-semibold">{job.role || job.title}</h3>
-            <p>Company: {job.company || job.providerName || "—"}</p>
-            <p>Location: {job.location || job.city || "Remote"}</p>
-            <div className="mt-3">
-              <Button variant="default" size="sm">Apply Now</Button>
+            <div className="flex justify-between items-center">
+              <div>
+                <h3 className="font-semibold">{job.role || job.title}</h3>
+                <p className="text-sm text-gray-600">{job.company || job.employer || ''}</p>
+              </div>
+              <div className="text-sm text-gray-500">{job.location || job.city || ''}</div>
             </div>
           </Card>
         ))}
