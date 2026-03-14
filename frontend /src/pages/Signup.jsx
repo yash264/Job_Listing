@@ -1,47 +1,37 @@
-import { useState } from "react";
-import { Button } from "../components/ui/Button";
-import { apiFetch } from "../utils/api";
+import React, { useState } from 'react';
+import Button from '../components/ui/Button';
+import client from '../utils/api';
+import { useNavigate } from 'react-router-dom';
 
 export default function Signup() {
-  const [form, setForm] = useState({ name: "", email: "", password: "", type: "seeker" });
-  const [error, setError] = useState("");
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();
-    setError("");
     try {
-      await apiFetch("/register", {
-        method: "POST",
-        body: JSON.stringify(form)
-      });
-      window.location.href = "/login";
+      await client.post('/signup', { name, email, password });
+      alert('Account created. Please login.');
+      navigate('/login');
     } catch (err) {
-      setError(err.message || "Signup error");
+      alert('Signup failed');
     }
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4">
-      <div className="w-full max-w-md p-6 rounded bg-card border border-border">
-        <h2 className="text-2xl font-bold mb-4">Create Account</h2>
-        <form className="space-y-4" onSubmit={handleSubmit}>
-          <input value={form.name} onChange={e => setForm({...form, name: e.target.value})} placeholder="Full name" className="w-full p-2 rounded bg-input" required />
-          <input value={form.email} onChange={e => setForm({...form, email: e.target.value})} type="email" placeholder="Email" className="w-full p-2 rounded bg-input" required />
-          <input value={form.password} onChange={e => setForm({...form, password: e.target.value})} type="password" placeholder="Password" className="w-full p-2 rounded bg-input" required />
-          <div className="flex gap-2 items-center">
-            <label className="text-sm">Role:</label>
-            <select value={form.type} onChange={e => setForm({...form, type: e.target.value})} className="p-2 rounded bg-input">
-              <option value="seeker">Job Seeker</option>
-              <option value="provider">Job Provider</option>
-            </select>
-          </div>
-          {error && <div className="text-destructive text-sm">{error}</div>}
-          <Button className="w-full" type="submit">Create Account</Button>
-        </form>
-        <div className="mt-4 text-sm text-muted-foreground">
-          Already have an account? <a href="/login" className="text-primary">Login</a>
-        </div>
-      </div>
+    <div className="max-w-md mx-auto">
+      <h1 className="text-2xl font-bold mb-4">Sign up</h1>
+      <form onSubmit={handleSubmit} className="bg-white p-6 rounded shadow">
+        <label className="block mb-2">Name</label>
+        <input value={name} onChange={e => setName(e.target.value)} className="w-full border p-2 mb-4" />
+        <label className="block mb-2">Email</label>
+        <input value={email} onChange={e => setEmail(e.target.value)} className="w-full border p-2 mb-4" />
+        <label className="block mb-2">Password</label>
+        <input type="password" value={password} onChange={e => setPassword(e.target.value)} className="w-full border p-2 mb-4" />
+        <Button type="submit">Create account</Button>
+      </form>
     </div>
   );
 }
