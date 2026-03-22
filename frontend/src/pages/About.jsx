@@ -65,7 +65,7 @@ function About() {
                                 <div class="card text-center" style={{ backgroundColor: "rgba(16, 18, 15, 0.65)", color: "white" }}>
                                     <div class="card-header">
                                         <h4>ANSHIKA THAKUR</h4>
-                                        <ImEnvelop /> anshikabhadauriya69@gmail.com
+                                        <ImEnvelop /> noxyze5674@gmail.com
                                     </div>
                                     <div class="card-body">
                                         <h5 class="card-title">About Me</h5>
