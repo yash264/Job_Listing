@@ -18,7 +18,7 @@ function AdminDash() {
     useEffect(() => {
         const fetchAdminData = async () => {
             try {
-                const response = await axios.get('http://localhost:4502/api/fetchAdmin',
+                const response = await axios.get('https://hiresathiserver.vercel.app/api/fetchAdmin',
                     {
                         headers: {
                             'Content-Type': 'application/json',
@@ -44,7 +44,7 @@ function AdminDash() {
         e.preventDefault();
 
         try {
-            const response = await axios.post('http://localhost:4502/api/updateAdmin',
+            const response = await axios.post('https://hiresathiserver.vercel.app/api/updateAdmin',
                 {
                     ferm: ferm,
                     gmail: gmail,

@@ -1,24 +1,21 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import moment from "moment";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 
 function PastApplication() {
 
-    const navigate = useNavigate()
     const [values, setValues] = useState([])
 
     const handleSubmit = async () => {
 
         try {
-            const response = await axios.get('http://localhost:4502/api/fetchPastApplication',
+            const response = await axios.get('https://hiresathiserver.vercel.app/api/fetchPastApplication',
                 {
                     headers: {
                         'Content-Type': 'application/json',
@@ -37,10 +34,6 @@ function PastApplication() {
     useEffect(() => {
         handleSubmit();
     }, []);
-
-    const checkStatus = () => {
-
-    }
 
     return (
         <>

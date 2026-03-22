@@ -18,7 +18,7 @@ function Notification() {
     const handleSubmit = async () => {
 
         try {
-            const response = await axios.get('http://localhost:4502/api/fetchNotification',
+            const response = await axios.get('https://hiresathiserver.vercel.app/api/fetchNotification',
                 {
                     headers: {
                         'Content-Type': 'application/json',

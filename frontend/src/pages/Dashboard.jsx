@@ -20,7 +20,7 @@ function DashBoard() {
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-                const response = await axios.get('http://localhost:4502/api/fetchUser',
+                const response = await axios.get('https://hiresathiserver.vercel.app/api/fetchUser',
                     {
                         headers: {
                             'Content-Type': 'application/json',
@@ -47,7 +47,7 @@ function DashBoard() {
         e.preventDefault();
 
         try {
-            const response = await axios.post('http://localhost:4502/api/updateUser',
+            const response = await axios.post('https://hiresathiserver.vercel.app/api/updateUser',
                 {
                     name: name,
                     gender: gender,

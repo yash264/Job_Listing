@@ -22,7 +22,7 @@ function ApplicationWindow() {
     const showDetails = async () => {
 
         try {
-            const response = await axios.post('http://localhost:4502/api/application',
+            const response = await axios.post('https://hiresathiserver.vercel.app/api/application',
                 {
                     ferm: ferm,
                     role: role,
@@ -110,7 +110,7 @@ function ApplicationWindow() {
         e.preventDefault();
 
         try {
-            const response = await axios.post('http://localhost:4502/api/submitForm',
+            const response = await axios.post('https://hiresathiserver.vercel.app/api/submitForm',
                 {
                     ferm:ferm,
                     role:role,

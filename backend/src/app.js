@@ -3,7 +3,7 @@ const app = express()
 const PORT = require("port")
 const port = process.env.PORT || 4502;
 const cors = require("cors");
-const hbs = require("hbs");   
+const hbs = require("hbs");
 const path = require("path");
 require("./db/connection");
 const cookieParser = require("cookie-parser")
@@ -15,36 +15,36 @@ const JobRoute = require("./routes/Job.route");
 const ApplicationRoute = require("./routes/Application.route");
 
 
-const corsOptions ={
+const corsOptions = {
     origin: "http://localhost:3000",
     methods: "GET, POST, PUT, DELETE, PATCH, HEAD",
     credentials: true,
-}; 
+};
 
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
-app.use(express.urlencoded({extended:false}));
+app.use(express.urlencoded({ extended: false }));
 
 
-app.set("view engine","hbs");
+app.set("view engine", "hbs");
 
 
-const static_path = path.join(__dirname , "../public")
-const template_path = path.join(__dirname , "../templates/views");
-const partials_path = path.join(__dirname , "../templates/partials");
+const static_path = path.join(__dirname, "../public")
+const template_path = path.join(__dirname, "../templates/views");
+const partials_path = path.join(__dirname, "../templates/partials");
 
 //humne jo file banayi h , public -> index.html mein ,usko access karne ke liye , uska path define kare h ,as static_path , aur phir usko , niche use kare h
 
 app.use(express.json());
 app.use(express.static(static_path));
 
-app.set("view engine" , "hbs");
-app.set("views" , template_path);
+app.set("view engine", "hbs");
+app.set("views", template_path);
 hbs.registerPartials(partials_path);
 
 
-app.get("/" , (req, res) => {
+app.get("/", (req, res) => {
     res.send("Welcome to server side.")
 })
 
@@ -55,10 +55,24 @@ app.use("/api", JobRoute)
 app.use("/api", ApplicationRoute)
 
 
-app.listen(port , (req , res)=>{
-    console.log( `Server is running at ${port}`)
-}) 
- 
+// to start the server
+app.get("/startServer", async (req, res) => {
+    try {
+        return res.status(200).json({
+            success: true,
+            message: "Server started Successfully",
+        });
+    }
+    catch (error) {
+        console.log(error);
+    }
+})
+
+
+app.listen(port, (req, res) => {
+    console.log(`Server is running at ${port}`)
+})
+
 
 //NOTE;-
 //Use async when:

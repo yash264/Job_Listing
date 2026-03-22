@@ -1,5 +1,6 @@
-import React from "react";
-import { BrowserRouter, Routes, Route }  from "react-router-dom";
+import React, { useEffect } from 'react';
+import axios from "axios";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Features from "./pages/Features";
 import About from "./pages/About";
@@ -19,6 +20,24 @@ import Candidates from "./pages/Admin/Candidates";
 
 
 function App() {
+
+  axios.defaults.withCredentials = true;
+
+  const startServer = async () => {
+    try {
+      const response = await axios.get('https://hiresathiserver.vercel.app/startServer');
+
+      console.log(response.data.message);
+
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    startServer();
+  }, [])
+
   return (
     <>
       <BrowserRouter>
@@ -26,7 +45,7 @@ function App() {
           <Route path="/" element={<Home />}></Route>
           <Route path="/features" element={<Features />}></Route>
           <Route path="/about" element={<About />}></Route>
-          
+
           <Route path="/User/register" element={<Register />}></Route>
           <Route path="/User/login" element={<Login />}></Route>
           <Route path="/User/dashBoard" element={<DashBoard />}></Route>

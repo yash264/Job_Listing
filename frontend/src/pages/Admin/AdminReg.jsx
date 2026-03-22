@@ -20,7 +20,7 @@ function AdminReg() {
         e.preventDefault();
 
         try{
-            const response = await axios.post('http://localhost:4502/api/adminRegister',
+            const response = await axios.post('https://hiresathiserver.vercel.app/api/adminRegister',
                 {  
                     ferm:ferm,
                     gmail:gmail,

@@ -20,7 +20,7 @@ function Login() {
         e.preventDefault();
 
         try{
-            const response = await axios.post('http://localhost:4502/api/login',
+            const response = await axios.post('https://hiresathiserver.vercel.app/api/login',
                 { 
                     email:email,
                     password:password
