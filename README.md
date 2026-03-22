@@ -1,3 +1,34 @@
+## 💼 HireSathi
+
+Your one-stop platform to track and showcase your skill progress. A modern and responsive web application that helps users to explore, and apply for jobs. This platform connects job seekers with opportunities across various industries.
+
+---
+
+## 🚀 Features
+- 🔐 User authentication (Login / Signup)
+- 🏢 View company details and job descriptions
+- 📄 Apply to jobs directly through the platform
+- ❤️ Have the option to upload documents
+- 📱 Fully responsive design (mobile-friendly)
+
+---
+
+## 🌐 Live Demo
+
+🚀 Live link:  https://hiresathi.vercel.app  
+👉 Video Tutorial:  https://drive.google.com/file/d/1CU6L0UjJY0zvuSmIAYy2uPDgTD1lHoHW/view?usp=drive_link
+
+---
+
+## 🛠️ Tech Stack
+
+- Frontend: React.js / Bootstrap
+- Backend: Node.js / Express 
+- Database: MongoDB
+- Cloudinary: for Document Uploading
+
+---
+
 ## 🔌 Backend API Endpoints
 
 ## 🌐 Base URL
@@ -79,33 +110,7 @@ npm install
 Run in development mode (if using nodemon):
 
 ```bash
-nodemon index.js
+nodemon src/app.js
 ```
 
 ---
-
-## 🧾 Git Commands
-
-Check git status:
-
-```bash
-git status
-```
-
-Add all files:
-
-```bash
-git add <directory>
-```
-
-Commit changes:
-
-```bash
-git commit -m "Initial commit"
-```
-
-Push to GitHub:
-
-```bash
-git push origin main
-```
