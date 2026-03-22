@@ -16,7 +16,7 @@ const ApplicationRoute = require("./routes/Application.route");
 
 
 const corsOptions = {
-    origin: "http://localhost:3000",
+    origin: "https://hiresathi.vercel.app",
     methods: "GET, POST, PUT, DELETE, PATCH, HEAD",
     credentials: true,
 };

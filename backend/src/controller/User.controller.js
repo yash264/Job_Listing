@@ -5,7 +5,6 @@ const dotenv=require('dotenv')
 const path = require('path');
 
 dotenv.config({ path: path.resolve(__dirname, '../../../.env') });
-const { registrationMail } = require("../middleware/registrationMail"); 
 
 const register = async (req, res) => {
     try {
@@ -19,10 +18,7 @@ const register = async (req, res) => {
                 email: req.body.email,
                 password: req.body.password
             })
-            const registered = await registerPerson.save();
-
-            // to send the mail
-            registrationMail(req.body.name, req.body.email);
+            await registerPerson.save();
 
             res.status(201).json({
                 success: true,
@@ -76,7 +72,7 @@ const verifyToken=async(req,res)=>{
     const token = req.headers.authorization?.split(' ')[1];
     if (!token) return res.status(401).json({ valid: false,data:null});
 
-    jwt.verify(token, 'jwt-secret-2k24', (err, decoded) => {
+    jwt.verify(token, process.env.jwt_secret, (err, decoded) => {
         if (err) return res.status(401).json({ valid: false ,data:null});
         return res.json({ valid: true ,data:decoded, message: "ok"});
     });
