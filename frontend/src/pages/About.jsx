@@ -80,7 +80,7 @@ function About() {
                                         </a>
                                         <hr />
                                         <p class="card-text">
-                                            Hello everyOne, it's Anshika project incharge and research updation & testing. 
+                                            Hello everyOne, it's Anshika project incharge and research updation & testing specialist. 
                                         </p>
                                     </div>
                                 </div>
