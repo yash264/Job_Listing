@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useNavigate }  from "react-router-dom";
 import { Auth } from "../SvgImage/Auth";
-import { Footer } from "../Components/Footer";
+import { Footer } from "../components/Footer";
 import { ToastContainer,toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "bootstrap/dist/css/bootstrap.min.css";

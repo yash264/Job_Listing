@@ -1,22 +1,22 @@
 import React from "react";
 import { BrowserRouter, Routes, Route }  from "react-router-dom";
-import Home from "./Pages/Home";
-import Features from "./Pages/Features";
-import About from "./Pages/About";
+import Home from "./pages/Home";
+import Features from "./pages/Features";
+import About from "./pages/About";
 
-import Register from "./Pages/Register";
-import Login from "./Pages/Login";
-import DashBoard from "./Pages/DashBoard";
-import Notification from "./Pages/Notification";
-import ApplicationWindow from "./Pages/ApplicationWindow";
-import PastApplication from "./Pages/PastApplication";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
+import DashBoard from "./pages/DashBoard";
+import Notification from "./pages/Notification";
+import ApplicationWindow from "./pages/ApplicationWindow";
+import PastApplication from "./pages/PastApplication";
 
-import AdminReg from "./Pages/Admin/AdminReg";
-import AdminLog from "./Pages/Admin/AdminLog";
-import AdminDash from "./Pages/Admin/AdminDash";
-import CreateJob from "./Pages/Admin/CreateJob";
-import Candidates from "./Pages/Admin/Candidates";
-//import "./App.css";
+import AdminReg from "./pages/Admin/AdminReg";
+import AdminLog from "./pages/Admin/AdminLog";
+import AdminDash from "./pages/Admin/AdminDash";
+import CreateJob from "./pages/Admin/CreateJob";
+import Candidates from "./pages/Admin/Candidates";
+
 
 function App() {
   return (

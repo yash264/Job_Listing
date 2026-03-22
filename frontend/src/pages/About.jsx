@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Footer } from "../Components/Footer";
+import { Footer } from "../components/Footer";
 import { ImEnvelop } from "react-icons/im";
 import { FaLinkedin, FaGithub, FaInstagram, FaEnvelope } from 'react-icons/fa';
 import logo from "../SvgImage/hiresathi.jpeg";

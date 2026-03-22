@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Footer } from "../Components/Footer";
+import { Footer } from "../components/Footer";
 import "./landing.css";
 import logo from "../SvgImage/hiresathi.jpeg";
 import "bootstrap/dist/css/bootstrap.min.css";

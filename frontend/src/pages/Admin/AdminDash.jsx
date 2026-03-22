@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Nav } from "./Nav";
-import { Footer } from "../../Components/Footer";
+import { Footer } from "../../components/Footer";
 import { Profile } from "../../SvgImage/Profile";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
