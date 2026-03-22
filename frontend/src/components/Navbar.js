@@ -31,9 +31,6 @@ export const Navbar = () => {
                         <li class="nav-item">
                             <Link class="nav-link" to="../User/pastApplication">Past Application</Link>
                         </li>
-                        <li class="nav-item">
-                            <Link class="nav-link" to="../User/register">Machine Learning Part</Link>
-                        </li>
                     </ul>
                     <div>
                         <button type="button" class="btn btn-outline-danger" onClick={logout} >Logout</button>

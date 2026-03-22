@@ -61,7 +61,7 @@ function Register() {
 
         try {
 
-            const response = await axios.post('http://localhost:4502/api/verify-token', {}, {
+            const response = await axios.post('https://hiresathiserver.vercel.app/api/verify-token', {}, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },

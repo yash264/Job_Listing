@@ -59,7 +59,7 @@ function AdminDash() {
                     }
                 }
             );
-            if (response.data.data === "updated") {
+            if (response.data.data === "updated user profile") {
                 toast.success("Updated Successfully");
             }
             else {
