@@ -6,7 +6,7 @@ import About from "./pages/About";
 
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-import DashBoard from "./pages/DashBoard";
+import DashBoard from "./pages/Dashboard";
 import Notification from "./pages/Notification";
 import ApplicationWindow from "./pages/ApplicationWindow";
 import PastApplication from "./pages/PastApplication";
