@@ -113,6 +113,32 @@ function About() {
                                 </div>
                             </div>
                         </div>
+                        <div class="col">
+                            <div class="p-3">
+                                <div class="card text-center" style={{ backgroundColor: "rgba(16, 18, 15, 0.65)", color: "white" }}>
+                                    <div class="card-header">
+                                        <h4>ABDUL RAHMAN</h4>
+                                        <ImEnvelop /> ff292211@gmail.com
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">About Me</h5>
+                                        <a href="#" style={{ color: "white" }} >
+                                            <FaLinkedin size={30} />
+                                        </a>
+                                        <a href="#" style={{ color: "white" }} >
+                                            <FaGithub size={30} />
+                                        </a>
+                                        <a href="#" target="_blank" style={{ color: "white" }} >
+                                            <FaInstagram size={30} />
+                                        </a>
+                                        <hr />
+                                        <p class="card-text">
+                                            Hello, this is Abdul Rahman. frontend  specialist. 
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="col">
                             <div class="p-3" >
