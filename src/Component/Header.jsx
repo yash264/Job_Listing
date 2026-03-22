@@ -1,16 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/Image/Background.png";
+import logo1 from '../assets/Image/logo1.jpeg'
+import {useEffect,useState} from 'react';
 
 function Header() {
   return (
+
     <nav className="sticky top-0 z-50 backdrop-blur-md bg-black/30 text-white">
 
       <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-3">
 
        
         <div className="flex items-center gap-2">
-          <img src={logo} alt="logo" className="h-10 w-10" />
+          <img src={logo1} alt="logo" className="h-10 w-10" />
           <h1 className="font-bold text-lg">HireSathi</h1>
         </div>
 
