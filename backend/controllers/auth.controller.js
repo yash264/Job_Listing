@@ -90,7 +90,7 @@ export const login = async (req, res) => {
                 email: ifExists.email,
                 type: ifExists.type
             },
-            process.env.JWT_SECRET,
+            process.env.jwt_secret,
             { expiresIn: "30d" }
         );
 
