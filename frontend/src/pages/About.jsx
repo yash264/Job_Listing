@@ -80,7 +80,7 @@ function About() {
                                         </a>
                                         <hr />
                                         <p class="card-text">
-                                            Hello everyOne, it's Anshika. Frontend Specialist.
+                                            Hello everyOne, it's Anshika project incharge and research updation & testing. 
                                         </p>
                                     </div>
                                 </div>
@@ -107,7 +107,7 @@ function About() {
                                         </a>
                                         <hr />
                                         <p class="card-text">
-                                            Hello, this is Mohit. UI/UX Design.
+                                            Hello, this is Mohit. UI/UX Design  specialist. 
                                         </p>
                                     </div>
                                 </div>
@@ -134,7 +134,7 @@ function About() {
                                         </a>
                                         <hr />
                                         <p class="card-text">
-                                            Hi, this is Yash. Design & Development.
+                                            Hi, this is Yash Full stack devloper & backend specialist. 
                                         </p>
                                     </div>
                                 </div>
