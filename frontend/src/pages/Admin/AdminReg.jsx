@@ -64,7 +64,7 @@ function AdminReg() {
 
         try {
 
-            const response = await axios.post('http://localhost:4502/api/verifyToken', {}, {
+            const response = await axios.post('https://hiresathiserver.vercel.app/api/verifyToken', {}, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
