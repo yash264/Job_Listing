@@ -17,6 +17,8 @@ export const Footer = () => {
                     <div class="col-4 " style={{ textAlign: "left" }} >
                         <p><ImEnvelop /> yash.20222068@mnnit.ac.in</p>
                         <p><ImLocation /> National Institute of Technology Allahabad</p>
+                        <sec><a href="https://www.instagram.com/amdoxtech">Amdox-Internship</a></sec>
+                   
                     </div>
                 </div>
             </div>
