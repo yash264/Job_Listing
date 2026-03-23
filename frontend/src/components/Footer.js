@@ -1,27 +1,44 @@
 import React from "react";
-import { ImLocation, ImEnvelop } from "react-icons/im";
+import { ImLocation, ImEnvelope } from "react-icons/im";
+import { FaEnvelope } from "react-icons/fa";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 
-export const Footer = () => {
-    return (
-        <>
-            <div class="text-center" style={{color:"white",backgroundColor:"rgba(20, 20, 20, 0.872)"}} >
-                <br/>
-                <div class="row">
-                    <div class="col">
-                        <h4>Stay Connected to us</h4>
-                    </div>
-                    <div class="col">
-                    </div>
-                    <div class="col-4 " style={{ textAlign: "left" }} >
-                        <p><ImEnvelop /> yash.20222068@mnnit.ac.in</p>
-                        <p><ImLocation /> National Institute of Technology Allahabad</p>
-                        <sec><a href="https://www.instagram.com/amdoxtech">Amdox-Internship</a></sec>
-                   
-                    </div>
-                </div>
-            </div>
-        </>
-    )
+const Footer = () => {
+  return (
+    <footer className="custom-footer text-center py-4">
+      <div className="container">
+        <div className="row">
+          {/* Left Column */}
+          <div className="col">
+            <h4 className="link-custom">Stay Connected to us</h4>
+          </div>
+
+          {/* Spacer Column */}
+          <div className="col"></div>
+
+          {/* Right Column */}
+          <div className="col-4 text-left">
+            <p><ImEnvelope /> yash.20222068@mnit.ac.in</p>
+            <p><ImLocation /> National Institute of Technology Allahabad</p>
+            <p>
+              <a href="https://www.instagram.com/amdoxtech" className="link-custom">
+                Andox-Internship
+              </a>
+            </p>
+          </div>
+        </div>
+
+        {/* Contact Button */}
+        <a
+          href="mailto:yash.20222068@mnit.ac.in"
+          className="btn btn-custom mt-3"
+        >
+          <FaEnvelope className="m-1" /> yash.20222068@mnit.ac.in
+        </a>
+      </div>
+    </footer>
+  );
 };
+
+export default Footer;
