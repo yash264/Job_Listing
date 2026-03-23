@@ -24,7 +24,7 @@ const Header = () => {
           </ul>
         </nav>
 
-        {/* Optional Icons (Hamburger / Close) */}
+        {/* Optional Icons  */}
         <div className="d-flex align-items-center">
           <FaBars className="link-custom mx-2" />
           <FaTimes className="link-custom mx-2" />
