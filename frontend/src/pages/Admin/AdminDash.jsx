@@ -1,5 +1,4 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Nav } from "./Nav";
 import { Footer } from "../../components/Footer";
@@ -8,167 +7,217 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function AdminDash() {
+  const [ferm, setFerm] = useState("");
+  const [gmail, setGmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
 
-    const [ferm, setFerm] = useState('')
-    const [gmail, setGmail] = useState('')
-    const [phone, setPhone] = useState('')
-    const [city, setCity] = useState('')
-    const [state, setState] = useState('')
+  useEffect(() => {
+    const fetchAdminData = async () => {
+      try {
+        const response = await axios.get(
+          "https://hiresathiserver.vercel.app/api/fetchAdmin",
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+            },
+          }
+        );
 
-    useEffect(() => {
-        const fetchAdminData = async () => {
-            try {
-                const response = await axios.get('https://hiresathiserver.vercel.app/api/fetchAdmin',
-                    {
-                        headers: {
-                            'Content-Type': 'application/json',
-                            Authorization: `Bearer ${localStorage.getItem('authToken')}`
-                        }
-                    }
-                );
-                console.log(response.data.message);
-                setFerm(response.data.message.ferm);
-                setGmail(response.data.message.gmail);
-                setPhone(response.data.message.adminDetails[0].phone);
-                setCity(response.data.message.adminDetails[0].city);
-                setState(response.data.message.adminDetails[0].state);
-            }
-            catch (error) {
-                console.log(error);
-            }
+        setFerm(response.data.message.ferm);
+        setGmail(response.data.message.gmail);
+        setPhone(response.data.message.adminDetails[0].phone);
+        setCity(response.data.message.adminDetails[0].city);
+        setState(response.data.message.adminDetails[0].state);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchAdminData();
+  }, []);
+
+  const handleSubmit = async () => {
+    try {
+      const response = await axios.post(
+        "https://hiresathiserver.vercel.app/api/updateAdmin",
+        { ferm, gmail, phone, city, state },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+          },
         }
-        fetchAdminData();
-    }, [])
+      );
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        try {
-            const response = await axios.post('https://hiresathiserver.vercel.app/api/updateAdmin',
-                {
-                    ferm: ferm,
-                    gmail: gmail,
-                    phone: phone,
-                    city: city,
-                    state: state,
-                },
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: `Bearer ${localStorage.getItem('authToken')}`
-                    }
-                }
-            );
-            if (response.data.data === "updated user profile") {
-                toast.success("Updated Successfully");
-            }
-            else {
-                toast.error("Some Error Occurred");
-            }
-        }
-        catch (error) {
-            console.log(error);
-        }
+      if (response.data.data === "updated user profile") {
+        toast.success("Updated Successfully");
+      } else {
+        toast.error("Some Error Occurred");
+      }
+    } catch (error) {
+      console.log(error);
     }
+  };
 
-    return (
-        <>
-            <Nav />
-            <h3>Admin Corner</h3>
-            
-            <div class="container px-4 text-center">
-                <div class="row gx-5">
-                    <div class="col">
-                        <div class="p-3">
-                            <Profile />
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="shadow p-3 mb-5 bg-body-tertiary rounded">
-                            <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#updateModal">
-                                Update
-                            </button>
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Ferm Name</th>
-                                        <td>{ferm == null ? "" : ferm}</td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="col">Email</th>
-                                        <td>{gmail == null ? "" : gmail}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="col">Mobile No.</th>
-                                        <td>{phone == null ? "" : phone}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="col">Location</th>
-                                        <td>{city == null || state == null ? "" : city +  ", " + state}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+  return (
+    <>
+      <Nav />
+
+      <h3 className="text-center mt-3" style={{ color: "var(--accent-pink)" }}>
+        Admin Corner
+      </h3>
+
+      <div className="container px-4 text-center mt-4">
+        <div className="row gx-5 align-items-center">
+          
+          {/* Profile SVG */}
+          <div className="col-md-6 mb-4">
+            <div className="p-3">
+              <Profile />
+            </div>
+          </div>
+
+          {/* Admin Details Card */}
+          <div className="col-md-6">
+            <div className="card p-4">
+              <button
+                type="button"
+                className="btn btn-custom mb-3"
+                data-bs-toggle="modal"
+                data-bs-target="#updateModal"
+              >
+                Update
+              </button>
+
+              <table className="table">
+                <tbody>
+                  <tr>
+                    <th>Firm Name</th>
+                    <td>{ferm}</td>
+                  </tr>
+                  <tr>
+                    <th>Email</th>
+                    <td>{gmail}</td>
+                  </tr>
+                  <tr>
+                    <th>Mobile No.</th>
+                    <td>{phone}</td>
+                  </tr>
+                  <tr>
+                    <th>Location</th>
+                    <td>
+                      {city && state ? `${city}, ${state}` : ""}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      {/* Update Modal */}
+      <div
+        className="modal fade"
+        id="updateModal"
+        tabIndex="-1"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog modal-dialog-scrollable">
+          <div className="modal-content card p-3">
+            <div className="modal-header">
+              <h5 className="modal-title">Update Details</h5>
+              <button type="button" className="btn-close" data-bs-dismiss="modal"></button>
             </div>
 
-
-            <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-scrollable">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h2 class="modal-title fs-5" id="exampleModalLabel">Update Details</h2>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form class="row g-3">
-                                <div class="col-md-6">
-                                    <label class="form-label">Ferm Name</label>
-                                    <input type="text" class="form-control" onChange={(e) => setFerm(e.target.value)} placeholder="Enter your Name" />
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="inputEmail" class="form-label">Email</label>
-                                    <input type="email" class="form-control" onChange={(e) => setGmail(e.target.value)} placeholder="Enter your Email" />
-                                </div>
-                                <div class="col-6">
-                                    <label for="inputMobile" class="form-label">Mobile No.</label>
-                                    <input type="number" class="form-control" onChange={(e) => setPhone(e.target.value)} placeholder="Enter Mobile Number" />
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="inputCity" class="form-label">City</label>
-                                    <input type="text" class="form-control" onChange={(e) => setCity(e.target.value)} id="inputCity" placeholder="Enter your City" />
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="inputState" class="form-label">State</label>
-                                    <select id="inputState" onChange={(e) => setState(e.target.value)} class="form-select">
-                                        <option selected>Choose...</option>
-                                        <option onChange={(e) => setState(e.target.value)}>Uttar Pradesh</option>
-                                        <option onChange={(e) => setState(e.target.value)} >Madhya Pradesh</option>
-                                        <option onChange={(e) => setState(e.target.value)}>New Delhi</option>
-                                        <option onChange={(e) => setState(e.target.value)}>Maharastra</option>
-                                        <option onChange={(e) => setState(e.target.value)} >Haryana</option>
-                                        <option onChange={(e) => setState(e.target.value)} >Rajasthan</option>
-                                        <option onChange={(e) => setState(e.target.value)}>Gujrat</option>
-                                        <option onChange={(e) => setState(e.target.value)} >Uttarakhand</option>
-                                        <option onChange={(e) => setState(e.target.value)}>Other's</option>
-                                    </select>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onClick={handleSubmit} >Save changes</button>
-                        </div>
-                    </div>
+            <div className="modal-body">
+              <form className="row g-3">
+                <div className="col-md-6">
+                  <label className="form-label">Firm Name</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Enter your Name"
+                    onChange={(e) => setFerm(e.target.value)}
+                  />
                 </div>
+
+                <div className="col-md-6">
+                  <label className="form-label">Email</label>
+                  <input
+                    type="email"
+                    className="form-control"
+                    placeholder="Enter your Email"
+                    onChange={(e) => setGmail(e.target.value)}
+                  />
+                </div>
+
+                <div className="col-md-6">
+                  <label className="form-label">Mobile No.</label>
+                  <input
+                    type="number"
+                    className="form-control"
+                    placeholder="Enter Mobile Number"
+                    onChange={(e) => setPhone(e.target.value)}
+                  />
+                </div>
+
+                <div className="col-md-6">
+                  <label className="form-label">City</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Enter your City"
+                    onChange={(e) => setCity(e.target.value)}
+                  />
+                </div>
+
+                <div className="col-md-6">
+                  <label className="form-label">State</label>
+                  <select
+                    className="form-select"
+                    onChange={(e) => setState(e.target.value)}
+                  >
+                    <option>Choose...</option>
+                    <option>Uttar Pradesh</option>
+                    <option>Madhya Pradesh</option>
+                    <option>New Delhi</option>
+                    <option>Maharashtra</option>
+                    <option>Haryana</option>
+                    <option>Rajasthan</option>
+                    <option>Gujarat</option>
+                    <option>Uttarakhand</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+              </form>
             </div>
-            <ToastContainer />
-            <Footer />
-        </>
-    )
+
+            <div className="modal-footer">
+              <button className="btn btn-outline-secondary" data-bs-dismiss="modal">
+                Close
+              </button>
+              <button
+                className="btn btn-custom"
+                data-bs-dismiss="modal"
+                onClick={handleSubmit}
+              >
+                Save Changes
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <ToastContainer />
+      <Footer />
+    </>
+  );
 }
 
 export default AdminDash;
