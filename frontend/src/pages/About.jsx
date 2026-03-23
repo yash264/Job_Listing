@@ -18,9 +18,9 @@ function About() {
     return (
         <>
 
-            <div style={{ backgroundColor: "rgba(16, 18, 15, 0.9)" }} >
+            <div className="main-bg">
 
-                <nav class="navbar navbar-expand-lg " style={{ backgroundColor: "rgb(145, 146, 148, 0.6)" }} >
+                <nav className="navbar navbar-expand-lg custom-navbar">
                     <div class="container-fluid">
                         <a className="navbar-brand" href="#">
                             <img
@@ -41,7 +41,7 @@ function About() {
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0" >
                                 <li class="nav-item">
-                                    <Link class="nav-link" to="/" style={{ color: "white" }}>HomePage</Link>
+                                    <Link className="nav-link link-custom" to="/">HomePage</Link>
                                 </li>
                                 <li class="nav-item">
                                     <Link class="nav-link" to="../features" style={{ color: "white" }}>Features</Link>
@@ -51,7 +51,7 @@ function About() {
                                 </li>
                             </ul>
                             <div>
-                                <button type="button" class="btn btn-danger" onClick={redirect} >Admin Corner</button>
+                                <button type="button" className="btn btn-custom" onClick={redirect}>Admin Corner</button>
                             </div>
                         </div>
                     </div>
@@ -62,20 +62,20 @@ function About() {
 
                         <div class="col">
                             <div class="p-3">
-                                <div class="card text-center" style={{ backgroundColor: "rgba(16, 18, 15, 0.65)", color: "white" }}>
+                                <div className="card text-center card-custom">
                                     <div class="card-header">
                                         <h4>ANSHIKA THAKUR</h4>
                                         <ImEnvelop /> noxyze5674@gmail.com
                                     </div>
                                     <div class="card-body">
                                         <h5 class="card-title">About Me</h5>
-                                        <a href="#" style={{ color: "white" }} >
+                                        <a href="#" className="link-custom">
                                             <FaLinkedin size={30} />
                                         </a>
-                                        <a href="#" style={{ color: "white" }} >
+                                        <a href="#" className="link-custom">
                                             <FaGithub size={30} />
                                         </a>
-                                        <a href="#" target="_blank" style={{ color: "white" }} >
+                                       <a href="#" className="link-custom">
                                             <FaInstagram size={30} />
                                         </a>
                                         <hr />
@@ -89,20 +89,20 @@ function About() {
 
                         <div class="col">
                             <div class="p-3">
-                                <div class="card text-center" style={{ backgroundColor: "rgba(16, 18, 15, 0.65)", color: "white" }}>
+                                <div className="card text-center card-custom">
                                     <div class="card-header">
                                         <h4>MOHIT PAWAR</h4>
                                         <ImEnvelop /> mohitpawar1109@gmail.com
                                     </div>
                                     <div class="card-body">
                                         <h5 class="card-title">About Me</h5>
-                                        <a href="#" style={{ color: "white" }} >
+                                        <a href="#" className="link-custom">
                                             <FaLinkedin size={30} />
                                         </a>
-                                        <a href="#" style={{ color: "white" }} >
+                                        <a href="#" className="link-custom">
                                             <FaGithub size={30} />
                                         </a>
-                                        <a href="#" target="_blank" style={{ color: "white" }} >
+                                        <a href="#" className="link-custom">
                                             <FaInstagram size={30} />
                                         </a>
                                         <hr />
@@ -115,20 +115,20 @@ function About() {
                         </div>
                         <div class="col">
                             <div class="p-3">
-                                <div class="card text-center" style={{ backgroundColor: "rgba(16, 18, 15, 0.65)", color: "white" }}>
+                                <div className="card text-center card-custom">
                                     <div class="card-header">
                                         <h4>ABDUL RAHMAN</h4>
                                         <ImEnvelop /> ff292211@gmail.com
                                     </div>
                                     <div class="card-body">
                                         <h5 class="card-title">About Me</h5>
-                                        <a href="#" style={{ color: "white" }} >
+                                        <a href="#" className="link-custom">
                                             <FaLinkedin size={30} />
                                         </a>
-                                        <a href="#" style={{ color: "white" }} >
+                                        <a href="#" className="link-custom">
                                             <FaGithub size={30} />
                                         </a>
-                                        <a href="#" target="_blank" style={{ color: "white" }} >
+                                        <a href="#" className="link-custom">
                                             <FaInstagram size={30} />
                                         </a>
                                         <hr />
@@ -142,7 +142,7 @@ function About() {
 
                         <div class="col">
                             <div class="p-3" >
-                                <div class="card text-center" style={{ backgroundColor: "rgba(16, 18, 15, 0.65)", color: "white" }}>
+                                <div className="card text-center card-custom">
                                     <div class="card-header">
                                         <h4>YASH PANDEY</h4>
                                         <ImEnvelop /> yash.20222068@mnnit.ac.in
