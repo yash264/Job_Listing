@@ -1,8 +1,7 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
-import { Nav } from "./Nav";
+import { Nav } from "../Nav";
 import { Footer } from "../../components/Footer";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -10,228 +9,238 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 
 function Candidates() {
+  const location = useLocation();
+  const role = location.state.role;
 
-    const location = useLocation()
-    const role = location.state.role;
+  const [values, setValues] = useState([]);
+  const [data, setData] = useState({});
+  const [message, setMessage] = useState({});
 
-    const [values, setValues] = useState([])
-
-    const fetchAdminData = async () => {
-        try {
-            const response = await axios.post('https://hiresathiserver.vercel.app/api/fetchCandidates',
-                {
-                    role: role,
-                },
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: `Bearer ${localStorage.getItem('authToken')}`
-                    }
-                }
-            );
-            setValues(response.data.message);
+  const fetchAdminData = async () => {
+    try {
+      const response = await axios.post(
+        "https://hiresathiserver.vercel.app/api/fetchCandidates",
+        { role },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+          },
         }
-        catch (error) {
-            console.log(error);
-        }
+      );
+      setValues(response.data.message);
+    } catch (error) {
+      console.log(error);
     }
+  };
 
-    useEffect(() => {
+  useEffect(() => {
+    fetchAdminData();
+  }, []);
+
+  const fetchProfile = async (name, email, role) => {
+    try {
+      const response = await axios.post(
+        "https://hiresathiserver.vercel.app/api/fetchProfile",
+        { name, email, role },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+          },
+        }
+      );
+
+      setData(response.data.data);
+      setMessage(response.data.message);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const confirmation = async (name, email, role) => {
+    try {
+      const response = await axios.post(
+        "https://hiresathiserver.vercel.app/api/acceptConfirmation",
+        { name, email, role },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+          },
+        }
+      );
+
+      if (response.data.message === "accepted") {
+        toast.success("Accepted");
         fetchAdminData();
-    }, [])
-
-    const confirmation = async (name, email, role) => {
-        try {
-            const response = await axios.post('https://hiresathiserver.vercel.app/api/acceptConfirmation',
-                {
-                    name: name,
-                    email: email,
-                    role: role,
-                },
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: `Bearer ${localStorage.getItem('authToken')}`
-                    }
-                }
-            );
-            if (response.data.message === "accepted") {
-                toast.success("Accepted");
-                fetchAdminData();
-            }
-            else {
-                toast.error("Some Error Occured");
-            }
-        }
-        catch (error) {
-            console.log(error);
-        }
+      } else {
+        toast.error("Some Error Occurred");
+      }
+    } catch (error) {
+      console.log(error);
     }
+  };
 
-    const [data, setData] = useState([])
-    const [message, setMessage] = useState([])
+  return (
+    <>
+      <Nav />
 
-    const fetchProfile = async (name, email, role) => {
-        try {
-            const response = await axios.post('https://hiresathiserver.vercel.app/api/fetchProfile',
-                {
-                    name: name,
-                    email: email,
-                    role: role,
-                },
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: `Bearer ${localStorage.getItem('authToken')}`
+      <div className="container mt-4">
+        <h3 className="mb-3" style={{ color: "var(--accent-pink)" }}>
+          Candidates Applied
+        </h3>
+
+        <table className="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Document</th>
+              <th>Profile</th>
+              <th>Accept</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {values?.map((value, index) => (
+              <tr key={index}>
+                <td>{value.name}</td>
+                <td>{value.email}</td>
+
+                <td>
+                  <a
+                    href={value.pdfUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="link-custom"
+                  >
+                    {value.document}
+                  </a>
+                </td>
+
+                <td>
+                  <button
+                    className="btn btn-outline-secondary"
+                    data-bs-toggle="modal"
+                    data-bs-target="#profileModal"
+                    onClick={() =>
+                      fetchProfile(value.name, value.email, value.role)
                     }
-                }
-            );
-            console.log(response.data);
-            setData(response.data.data);
-            setMessage(response.data.message);
-        }
-        catch (error) {
-            console.log(error);
-        }
-    }
+                  >
+                    View
+                  </button>
+                </td>
 
-    return (
-        <>
-            <Nav />
-            <div>
-                <h3>Candidates Applied</h3>
+                <td>
+                  {value.status ? (
+                    <button className="btn btn-success">Accepted</button>
+                  ) : (
+                    <button
+                      className="btn btn-custom"
+                      onClick={() =>
+                        confirmation(value.name, value.email, value.role)
+                      }
+                    >
+                      Accept
+                    </button>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {/* SINGLE MODAL */}
+      <div
+        className="modal fade"
+        id="profileModal"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabIndex="-1"
+      >
+        <div className="modal-dialog modal-lg">
+          <div className="modal-content card p-3">
+            <div className="modal-header">
+              <h5 className="modal-title">Candidate Profile</h5>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+              ></button>
             </div>
 
+            <div className="modal-body text-center">
+              <img src={data.imageUrl} alt="Profile" className="profile-pic" />
 
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Document</th>
-                        <th scope="col">View Profile</th>
-                        <th scope="col">Accept Application</th>
-                    </tr>
-                </thead>
+              <table className="table mt-3">
                 <tbody>
-                    {
-                        values === null ? "" : values.map((value) => {
-                            return <tr>
-                                <td>{value.name}</td>
-                                <td>{value.email}</td>
-                                <td><a href={value.pdfUrl} style={{ textDecoration: "none" }}>{value.document}</a></td>
-                                <td><button className="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#profile" onClick={() => fetchProfile(value.name, value.email, role)}>Click here</button></td>
-                                {
-                                    value.status === true ?
-                                        <td><button className="btn btn-success" >Accepted</button></td>
-                                        :
-                                        <td><button className="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#confirmation">Click here</button></td>
-                                }
+                  <tr>
+                    <th>Name</th>
+                    <td>{message.name}</td>
+                  </tr>
 
-                                <td>
-                                    <div class="modal fade" id="profile" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Candidate Profile</h1>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body" style={{ textAlign: "center" }} >
-                                                    <img src={data.imageUrl} alt="Profile Picture" class="profile-pic" style={{ width: "100px" }} />
-                                                    <table class="table">
-                                                        <tbody>
-                                                            <tr>
-                                                                <th scope="row">Name</th>
-                                                                <td>{message.name}</td>
-                                                                <th scope="row">Gender</th>
-                                                                <td>{message.gender}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">Email</th>
-                                                                <td>{message.email}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">Mobile No.</th>
-                                                                <td>
-                                                                    {
-                                                                        message.personalDetails == null ? "" : message.personalDetails.map((index) => {
-                                                                            return <tr>
-                                                                                <td>{index.mobile}</td>
-                                                                            </tr>
-                                                                        })
-                                                                    }
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">Qualification</th>
-                                                                <td>
-                                                                    {
-                                                                        message.personalDetails == null ? "" : message.personalDetails.map((index) => {
-                                                                            return <tr>
-                                                                                <td>{index.qualification}</td>
-                                                                            </tr>
-                                                                        })
-                                                                    }
-                                                                </td>
-                                                                <th scope="row">Role</th>
-                                                                <td>{data.role}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">Location</th>
-                                                                <td>
-                                                                    {
-                                                                        message.personalDetails == null ? "" : message.personalDetails.map((index) => {
-                                                                            return <tr>
-                                                                                <td>{index.city + ", " + index.state}</td>
-                                                                            </tr>
-                                                                        })
-                                                                    }
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">About</th>
-                                                                <td>{data.yourself}</td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
+                  <tr>
+                    <th>Email</th>
+                    <td>{message.email}</td>
+                  </tr>
 
+                  <tr>
+                    <th>Mobile</th>
+                    <td>
+                      {message.personalDetails?.map((p, i) => (
+                        <div key={i}>{p.mobile}</div>
+                      ))}
+                    </td>
+                  </tr>
 
-                                <td>
-                                    <div class="modal fade" id="confirmation" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Confirmation</h1>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    Are you sure want to Accept the Application ?
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal" onClick={() => confirmation(value.name, value.email, role)}>Accept</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        })
-                    }
+                  <tr>
+                    <th>Qualification</th>
+                    <td>
+                      {message.personalDetails?.map((p, i) => (
+                        <div key={i}>{p.qualification}</div>
+                      ))}
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <th>Role</th>
+                    <td>{data.role}</td>
+                  </tr>
+
+                  <tr>
+                    <th>Location</th>
+                    <td>
+                      {message.personalDetails?.map((p, i) => (
+                        <div key={i}>
+                          {p.city}, {p.state}
+                        </div>
+                      ))}
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <th>About</th>
+                    <td>{data.yourself}</td>
+                  </tr>
                 </tbody>
-            </table>
-            <ToastContainer />
-            <Footer />
-        </>
-    )
+              </table>
+            </div>
+
+            <div className="modal-footer">
+              <button className="btn btn-outline-secondary" data-bs-dismiss="modal">
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <ToastContainer />
+      <Footer />
+    </>
+  );
 }
 
 export default Candidates;
