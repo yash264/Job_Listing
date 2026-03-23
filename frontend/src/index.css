@@ -1,1 +1,35 @@
+/* customTheme.css */
 
+:root {
+  --primary-pink: #ffdce0;
+  --secondary-violet: #e6c8ff;
+  --accent-purple: #6A0572;
+  --link-pink: #D63384;
+}
+
+/* Navbar */
+.navbar {
+  background-color: var(--secondary-violet) !important;
+}
+
+/* Page background */
+body, .main-bg {
+  background-color: var(--primary-pink);
+}
+
+/* Card styling */
+.card {
+  background-color: var(--secondary-violet);
+  color: var(--accent-purple);
+}
+
+/* Links */
+a, .nav-link {
+  color: var(--link-pink) !important;
+}
+
+/* Buttons */
+.btn-custom {
+  background-color: var(--link-pink);
+  color: white;
+}
