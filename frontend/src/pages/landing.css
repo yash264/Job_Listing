@@ -14,7 +14,7 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #111827;
+  background: linear-gradient(135deg, #ffdce0, #e6c8ff); /* pastel gradient */
   min-height: 100vh;
   overflow: hidden;
 }
@@ -49,7 +49,7 @@ section {
 }
 
 .info p {
-  color: #fff;
+  color: #6A0572; /* deep purple text */
   font-weight: 500;
   font-size: 1rem;
   margin-bottom: 20px;
@@ -57,7 +57,7 @@ section {
 }
 
 .movie-night {
-  background: linear-gradient(225deg, #ff3cac 0%, #784ba0 50%, #2b86c5 100%);
+  background: linear-gradient(225deg, #ffdce0 0%, #d63384 50%, #e6c8ff 100%);
 }
 
 .btn {
@@ -69,10 +69,10 @@ section {
   border-radius: 4px;
   outline: none;
   text-decoration: none;
-  color: #784ba0;
-  background: rgba(255, 255, 255, 0.9);
+  color: #fff;
+  background: #d63384; /* vibrant pink button */
   box-shadow: 0 6px 30px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: none;
   cursor: pointer;
 }
 
@@ -85,23 +85,13 @@ section {
 }
 
 @keyframes gelatine {
-  0%,
-  100% {
-    transform: scale(1, 1);
-  }
-  25% {
-    transform: scale(0.9, 1.1);
-  }
-  50% {
-    transform: scale(1.1, 0.9);
-  }
-  75% {
-    transform: scale(0.95, 1.05);
-  }
+  0%, 100% { transform: scale(1, 1); }
+  25% { transform: scale(0.9, 1.1); }
+  50% { transform: scale(1.1, 0.9); }
+  75% { transform: scale(0.95, 1.05); }
 }
 
 /* SWIPER */
-
 .swiper {
   width: 250px;
   height: 450px;
@@ -132,7 +122,7 @@ section {
   inset: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to top, #0f2027, transparent, transparent);
+  background: linear-gradient(to top, #ffdce0, transparent, transparent);
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -141,7 +131,7 @@ section {
   position: absolute;
   top: 0;
   right: 0;
-  color: #fff;
+  color: #6A0572;
   padding: 7px 18px;
   margin: 10px;
   border-radius: 20px;
@@ -149,7 +139,7 @@ section {
   font-size: 0.8rem;
   font-weight: 700;
   font-family: inherit;
-  background: rgba(255, 255, 255, 0.095);
+  background: rgba(255, 255, 255, 0.3);
   box-shadow: inset 2px -2px 20px rgba(214, 214, 214, 0.2),
     inset -3px 3px 3px rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(74px);
@@ -159,15 +149,14 @@ section {
   position: absolute;
   bottom: 0;
   left: 0;
-  color: #fff;
-  font-weight: 400;
+  color: #6A0572;
+  font-weight: 500;
   font-size: 1.1rem;
   line-height: 1.4;
   margin: 0 0 20px 20px;
 }
 
 /* ANIMATED BACKGROUND */
-
 .circles {
   position: absolute;
   top: 0;
@@ -183,90 +172,14 @@ section {
   list-style: none;
   width: 20px;
   height: 20px;
-  background-color: #ff3cac;
   background-image: linear-gradient(
     225deg,
-    #ff3cac 0%,
-    #784ba0 50%,
-    #2b86c5 100%
+    #ffdce0 0%,
+    #d63384 50%,
+    #e6c8ff 100%
   );
   animation: animate 25s linear infinite;
   bottom: -150px;
-}
-
-.circles li:nth-child(1) {
-  left: 25%;
-  width: 80px;
-  height: 80px;
-  animation-delay: 0s;
-}
-
-.circles li:nth-child(2) {
-  left: 10%;
-  width: 20px;
-  height: 20px;
-  animation-delay: 2s;
-  animation-duration: 12s;
-}
-
-.circles li:nth-child(3) {
-  left: 70%;
-  width: 20px;
-  height: 20px;
-  animation-delay: 4s;
-}
-
-.circles li:nth-child(4) {
-  left: 40%;
-  width: 60px;
-  height: 60px;
-  animation-delay: 0s;
-  animation-duration: 18s;
-}
-
-.circles li:nth-child(5) {
-  left: 65%;
-  width: 20px;
-  height: 20px;
-  animation-delay: 0s;
-}
-
-.circles li:nth-child(6) {
-  left: 75%;
-  width: 110px;
-  height: 110px;
-  animation-delay: 3s;
-}
-
-.circles li:nth-child(7) {
-  left: 35%;
-  width: 150px;
-  height: 150px;
-  animation-delay: 7s;
-}
-
-.circles li:nth-child(8) {
-  left: 50%;
-  width: 25px;
-  height: 25px;
-  animation-delay: 15s;
-  animation-duration: 45s;
-}
-
-.circles li:nth-child(9) {
-  left: 20%;
-  width: 15px;
-  height: 15px;
-  animation-delay: 2s;
-  animation-duration: 35s;
-}
-
-.circles li:nth-child(10) {
-  left: 85%;
-  width: 150px;
-  height: 150px;
-  animation-delay: 0s;
-  animation-duration: 11s;
 }
 
 @keyframes animate {
@@ -275,22 +188,9 @@ section {
     opacity: 1;
     border-radius: 0;
   }
-
   100% {
     transform: translateY(-1000px) rotate(720deg);
     opacity: 0;
     border-radius: 50%;
   }
 }
-
-/*
-@media (max-width: 750px) {
-  .content {
-     flex-direction: column-reverse;
-  }
-  
-  .btn {
-    margin: 10px auto 40px;
-  }
-}
-*/
