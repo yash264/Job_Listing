@@ -1,77 +1,85 @@
-
-
+/* -------------------------------------------------------
+   Pastel Pink–Purple Theme Variables
+------------------------------------------------------- */
 :root {
-  --pink: #fceaff;
-  --pink-dark: #f7d6ff;
-  --violet: #b388eb;
-  --violet-dark: #8f5fe8;
-  --lavender: #e8c7ff;
-  --lavender-dark: #d8b4ff;
-  --text-dark: #4a3b5f;
-  --text-light: #5a4a6a;
+  --primary: #d8b4ff;          /* Pastel lavender */
+  --secondary: #ffd6f9;        /* Baby pastel pink */
+
+  --pink: #ffe6ff;             /* Cotton candy pink */
+  --pink-dark: #f9cfff;
+
+  --violet: #e6d4ff;           /* Soft lilac */
+  --violet-dark: #c9a8ff;
+
+  --lavender: #f3e8ff;
+  --lavender-dark: #e8d1ff;
+
+  --text-dark: #5a4a6a;        /* Muted plum */
+  --text-light: #7a6a8a;       /* Lavender-gray */
+
   --white: #ffffff;
-  --card-shadow: rgba(0, 0, 0, 0.08);
-  --muted: rgba(74, 59, 95, 0.7);
+  --muted: rgba(122, 106, 138, 0.6);
+
+  --card-shadow: rgba(0, 0, 0, 0.06);
 }
 
-/* Base */
+/* -------------------------------------------------------
+   Base
+------------------------------------------------------- */
 html, body, #root {
-  color: var(--text-dark) !important;
-  font-weight: 400 !important;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: var(--primary);
   margin: 0;
   padding: 0;
   font-family: "Poppins", sans-serif;
+  background-color: var(--primary);
+  color: var(--text-dark);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Headings */
+/* -------------------------------------------------------
+   Typography
+------------------------------------------------------- */
 h1, h2, h3, h4, h5, h6 {
-  color: var(--primary) !important;
-  font-weight: 600 !important;
+  color: var(--primary);
+  font-weight: 600;
   margin: 0;
 }
 
-/* Emphasis */
 strong, b {
-  color: var(--text-dark) !important;
-  font-weight: 600 !important;
+  color: var(--text-dark);
+  font-weight: 600;
 }
 
-/* Links and nav */
+/* -------------------------------------------------------
+   Links & Navigation
+------------------------------------------------------- */
 a, .nav-link, .navbar-brand, .link-custom {
-  color: var(--secondary) !important;
-  font-weight: 500 !important;
+  color: var(--secondary);
+  font-weight: 500;
   text-decoration: none;
 }
 
+a:hover,
+.nav-link:hover,
+.link-custom:hover {
+  color: var(--primary);
+}
+
 .nav-link.active {
-  color: var(--primary) !important;
-  font-weight: 700 !important;
+  color: var(--primary);
+  font-weight: 700;
 }
 
-/* Containers inherit theme color */
+/* -------------------------------------------------------
+   Containers & Layout
+------------------------------------------------------- */
 .container, .card, .table, section, header, footer, main, nav {
-  color: inherit !important;
+  color: inherit;
 }
 
-/* Neutralize inline color declarations that set black or any color; prefer theme variables */
-*[style*="color:"] {
-  color: inherit !important;
-}
-
-/* Pseudo elements */
-*::before, *::after {
-  color: inherit !important;
-}
-
-/* Links hover */
-a:hover {
-  color: var(--primary) !important;
-}
-
-/* Buttons */
+/* -------------------------------------------------------
+   Buttons
+------------------------------------------------------- */
 .btn-custom {
   background-color: var(--secondary);
   color: var(--text-dark);
@@ -84,7 +92,6 @@ a:hover {
 
 .btn-custom:hover {
   background-color: var(--lavender-dark);
-  color: var(--text-dark);
 }
 
 .btn-outline-primary {
@@ -93,53 +100,44 @@ a:hover {
 }
 
 .btn-outline-primary:hover {
-  background-color: var(--secondary) !important;
+  background-color: var(--secondary);
   color: var(--text-light);
 }
 
-/* Navbar */
-.navbar {
+/* -------------------------------------------------------
+   Navbar
+------------------------------------------------------- */
+.navbar,
+.custom-navbar {
   background-color: var(--secondary);
   box-shadow: 0 2px 6px var(--card-shadow);
+  color: var(--text-dark);
+  z-index: 1000;
 }
 
-.navbar-brand,
-.nav-link {
-  color: var(--secondary) !important;
-  font-weight: 500;
-}
-
-.nav-link:hover {
-  color: var(--primary) !important;
-}
-
-/* Footer */
+/* -------------------------------------------------------
+   Footer
+------------------------------------------------------- */
 .custom-footer {
   background: var(--primary);
   color: var(--text-light);
   padding: 20px 0;
 }
 
-/* Link custom */
-.link-custom {
-  color: var(--secondary);
-  font-weight: 500;
-}
-
-.link-custom:hover {
-  color: var(--primary);
-}
-
-/* Card */
+/* -------------------------------------------------------
+   Cards
+------------------------------------------------------- */
 .card {
-  background-color: var(--text-light);
+  background-color: var(--lavender);
   border: none;
   border-radius: 12px;
   box-shadow: 0 4px 10px var(--card-shadow);
   padding: 20px;
 }
 
-/* Table */
+/* -------------------------------------------------------
+   Tables
+------------------------------------------------------- */
 .table th {
   color: var(--primary);
   font-weight: 600;
@@ -149,12 +147,14 @@ a:hover {
   color: var(--text-dark);
 }
 
-/* Forms */
+/* -------------------------------------------------------
+   Forms
+------------------------------------------------------- */
 .form-control,
 .form-select {
   border-radius: 8px;
   border: 1px solid var(--secondary);
-  background-color: var(--text-light);
+  background-color: var(--lavender);
   color: var(--text-dark);
 }
 
@@ -164,74 +164,50 @@ a:hover {
   box-shadow: 0 0 4px var(--secondary);
 }
 
-/* Modals */
+/* -------------------------------------------------------
+   Modals
+------------------------------------------------------- */
 .modal-content {
-  background-color: var(--text-light);
+  background-color: var(--lavender);
   border-radius: 12px;
   box-shadow: 0 4px 12px var(--card-shadow);
 }
 
-.modal-header {
-  border-bottom: 1px solid var(--pink-dark);
-}
-
+.modal-header,
 .modal-footer {
-  border-top: 1px solid var(--pink-dark);
+  border-color: var(--pink-dark);
 }
 
-/* Spinner */
+/* -------------------------------------------------------
+   Misc UI Elements
+------------------------------------------------------- */
 .spinner-border {
-  color: var(--primary) !important;
+  color: var(--primary);
 }
 
-/* Profile image */
 .profile-pic {
   border-radius: 10px;
   border: 2px solid var(--secondary);
 }
 
-/* Main background */
 .main-bg {
-  background-color: var(--primary) !important;
+  background-color: var(--primary);
   min-height: 100vh;
   width: 100%;
-  padding: 0;
-  margin: 0;
 }
 
-/* Custom navbar specifics */
-.custom-navbar {
-  background-color: var(--secondary) !important;
-  color: var(--text-dark) !important;
-  box-shadow: 0 2px 6px var(--card-shadow);
-  z-index: 1000;
-}
-
-.custom-navbar .navbar-brand,
-.custom-navbar .nav-link,
-.custom-navbar .link-custom {
-  color: var(--secondary) !important;
-  font-weight: 500 !important;
-}
-
-.custom-navbar .nav-link:hover {
-  color: var(--primary) !important;
-}
-
-/* Hero safety */
+/* -------------------------------------------------------
+   Hero Section
+------------------------------------------------------- */
 .hero-section,
 .hero-section * {
-  color: var(--text-dark) !important;
-  font-weight: 400 !important;
+  color: var(--text-dark);
 }
 
-.hero-title, .hero-subtitle, .section-title, .section-text {
-  color: var(--primary) !important;
-  font-weight: 600 !important;
-}
-
-/* Prevent overly bold global rules */
-body * {
-  font-weight: inherit !important;
-  color: inherit !important;
+.hero-title,
+.hero-subtitle,
+.section-title,
+.section-text {
+  color: var(--primary);
+  font-weight: 600;
 }
