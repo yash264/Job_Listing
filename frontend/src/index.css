@@ -139,13 +139,13 @@ a:hover {
   padding: 20px;
 }
 
-/* -------------------------------------------------- */
-/* FORMS, MODALS, TABLES, PROFILE                     */
-/* -------------------------------------------------- */
+
+/* FORMS, MODALS, TABLES, PROFILE              
 .table th {
   color: var(--violet-dark);
   font-weight: 600;
 }
+
 
 .table td {
   color: var(--text-dark);
@@ -188,9 +188,9 @@ a:hover {
   border: 2px solid var(--violet);
 }
 
-/* -------------------------------------------------- */
+
 /* HERO / MAIN-BG SAFETY (ensures pastel background)  */
-/* -------------------------------------------------- */
+
 .main-bg {
   background-color: var(--pink) !important;
   min-height: 100vh;
@@ -199,9 +199,9 @@ a:hover {
   margin: 0;
 }
 
-/* -------------------------------------------------- */
+
 /* HEADER / NAV SPECIFIC OVERRIDES                    */
-/* -------------------------------------------------- */
+
 .custom-navbar {
   background-color: var(--lavender) !important;
   color: var(--text-dark) !important;
@@ -218,11 +218,9 @@ a:hover {
 
 .custom-navbar .nav-link:hover {
   color: var(--violet-dark) !important;
-}
-
-/* -------------------------------------------------- */
+  
 /* HERO-SPECIFIC SAFETY (landing page)                */
-/* -------------------------------------------------- */
+
 .hero-section,
 .hero-section * {
   color: var(--text-dark) !important;
@@ -261,7 +259,7 @@ a:hover {
 
 
 /* CLEANUP: remove overly bold global rules           
-/* If any library sets body * { font-weight: 700 }, this neutralizes it */
+
 body * {
   font-weight: inherit !important;
   color: inherit !important;
