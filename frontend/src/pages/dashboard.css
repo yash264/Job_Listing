@@ -1,0 +1,71 @@
+.dashboard-root {
+  color: var(--text-dark);
+}
+
+/* Card styling */
+.card {
+  background: var(--white);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px var(--card-shadow);
+}
+
+/* Section titles */
+.section-title {
+  color: var(--violet) !important;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+/* Table styling */
+.table thead th {
+  color: var(--violet-dark);
+  font-weight: 600;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.table tbody td {
+  color: var(--text-dark);
+}
+
+/* Badges */
+.badge {
+  font-weight: 600;
+}
+
+/* Sidebar profile */
+.profile-pic {
+  border-radius: 10px;
+  border: 2px solid var(--violet);
+  object-fit: cover;
+}
+
+/* Buttons */
+.btn-custom {
+  background-color: var(--lavender);
+  color: var(--text-dark);
+  border-radius: 8px;
+  padding: 8px 14px;
+  border: none;
+}
+
+.btn-outline-primary {
+  border-color: var(--violet);
+  color: var(--violet);
+}
+
+/* Small text / muted */
+.text-muted {
+  color: var(--text-light) !important;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .dashboard-root .card {
+    padding: 18px;
+  }
+
+  .profile-pic {
+    width: 64px;
+    height: 64px;
+  }
+}
