@@ -1,10 +1,10 @@
-import React from "react";
-import { useNavigate, Link } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.min.js";
 
-export const Navbar = () => {
+import React, { useState } from "react";
+import { useNavigate, NavLink } from "react-router-dom";
+
+const Navbar = () => {
   const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
 
   const logout = (e) => {
     e.preventDefault();
@@ -13,38 +13,75 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg custom-navbar">
+    <nav className="navbar custom-navbar navbar-expand-lg">
       <div className="container-fluid">
-        <a className="navbar-brand link-custom" href="#">Services</a>
+        <NavLink to="/" className="navbar-brand link-custom">
+          HireSathi
+        </NavLink>
+
         <button
-          className="navbar-toggler"
+          className="navbar-toggler border-0 bg-transparent"
           type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
+          aria-label="Toggle navigation"
+          onClick={() => setOpen((s) => !s)}
         >
-          <span className="navbar-toggler-icon"></span>
+          <span className="toggler-icon" style={{ color: "var(--violet)" }}>
+            {open ? "✕" : "☰"}
+          </span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <div className={`collapse navbar-collapse ${open ? "show" : ""}`}>
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link className="nav-link link-custom" to="../User/dashBoard">DashBoard</Link>
+              <NavLink to="/" className="nav-link link-custom" end onClick={() => setOpen(false)}>
+                Home
+              </NavLink>
             </li>
+
             <li className="nav-item">
-              <Link className="nav-link link-custom" to="../User/notification">Notification</Link>
+              <NavLink to="/features" className="nav-link link-custom" onClick={() => setOpen(false)}>
+                Features
+              </NavLink>
             </li>
+
             <li className="nav-item">
-              <Link className="nav-link link-custom" to="../User/pastApplication">Past Application</Link>
+              <NavLink to="/about" className="nav-link link-custom" onClick={() => setOpen(false)}>
+                About
+              </NavLink>
+            </li>
+
+            <li className="nav-item">
+              <NavLink to="/User/dashBoard" className="nav-link link-custom" onClick={() => setOpen(false)}>
+                Dashboard
+              </NavLink>
+            </li>
+
+            <li className="nav-item">
+              <NavLink to="/User/notification" className="nav-link link-custom" onClick={() => setOpen(false)}>
+                Notifications
+              </NavLink>
+            </li>
+
+            <li className="nav-item">
+              <NavLink to="/User/pastApplication" className="nav-link link-custom" onClick={() => setOpen(false)}>
+                Past Applications
+              </NavLink>
             </li>
           </ul>
-          <button
-            type="button"
-            className="btn btn-custom"
-            onClick={logout}
-          >
-            Logout
-          </button>
+
+          <div className="d-flex align-items-center">
+            <button type="button" className="btn btn-custom me-2" onClick={() => navigate("/User/login")}>
+              Login
+            </button>
+
+            <button type="button" className="btn btn-outline-primary" onClick={logout}>
+              Logout
+            </button>
+          </div>
         </div>
       </div>
     </nav>
   );
 };
+
+export default Navbar;
