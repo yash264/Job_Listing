@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import { ImEnvelop } from "react-icons/im";
-import { FaLinkedin, FaGithub, FaInstagram, FaEnvelope } from "react-icons/fa";
+import { FaLinkedin, FaGithub, FaInstagram } from "react-icons/fa";
 import logo from "../SvgImage/hiresathi.jpeg";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
@@ -28,10 +28,11 @@ function About() {
                   height: "50px",
                   width: "auto",
                   borderRadius: "10px",
-                  objectFit: "cover"
+                  objectFit: "cover",
                 }}
               />
             </a>
+
             <button
               className="navbar-toggler"
               type="button"
@@ -43,6 +44,7 @@ function About() {
             >
               <span className="navbar-toggler-icon"></span>
             </button>
+
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
@@ -55,6 +57,7 @@ function About() {
                   <Link className="nav-link link-custom" to="../about">About</Link>
                 </li>
               </ul>
+
               <div>
                 <button
                   type="button"
@@ -70,6 +73,7 @@ function About() {
 
         <div className="container px-4 text-center">
           <div className="row gx-5">
+
             {/* ANSHIKA */}
             <div className="col">
               <div className="p-3">
