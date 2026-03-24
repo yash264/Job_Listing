@@ -9,16 +9,18 @@
   font-family: "Comfortaa", cursive;
 }
 
+/* Section Background */
 section {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #ffdce0, #e6c8ff); /* pastel gradient */
+  background: linear-gradient(135deg, var(--pink), var(--lavender)); /* pastel gradient */
   min-height: 100vh;
   overflow: hidden;
 }
 
+/* Glass Content Box */
 .content {
   display: flex;
   flex-direction: row;
@@ -34,10 +36,12 @@ section {
   border-radius: 20px;
   width: min(900px, 100%);
   box-shadow: 0 0.5px 0 1px rgba(255, 255, 255, 0.23) inset,
-    0 1px 0 0 rgba(255, 255, 255, 0.66) inset, 0 4px 16px rgba(0, 0, 0, 0.12);
+    0 1px 0 0 rgba(255, 255, 255, 0.66) inset, 
+    0 4px 16px rgba(0, 0, 0, 0.12);
   z-index: 10;
 }
 
+/* Text Section */
 .info {
   display: flex;
   flex-direction: column;
@@ -49,17 +53,24 @@ section {
 }
 
 .info p {
-  color: #6A0572; /* deep purple text */
+  color: var(--text-dark);
   font-weight: 500;
   font-size: 1rem;
   margin-bottom: 20px;
   line-height: 1.5;
 }
 
+/* Gradient Box Variant */
 .movie-night {
-  background: linear-gradient(225deg, #ffdce0 0%, #d63384 50%, #e6c8ff 100%);
+  background: linear-gradient(
+    225deg,
+    var(--pink) 0%,
+    var(--violet-dark) 50%,
+    var(--lavender) 100%
+  );
 }
 
+/* Button */
 .btn {
   display: block;
   padding: 10px 40px;
@@ -69,8 +80,8 @@ section {
   border-radius: 4px;
   outline: none;
   text-decoration: none;
-  color: #fff;
-  background: #d63384; /* vibrant pink button */
+  color: var(--white);
+  background: var(--violet); /* pastel violet */
   box-shadow: 0 6px 30px rgba(0, 0, 0, 0.1);
   border: none;
   cursor: pointer;
@@ -91,7 +102,7 @@ section {
   75% { transform: scale(0.95, 1.05); }
 }
 
-/* SWIPER */
+/* Swiper */
 .swiper {
   width: 250px;
   height: 450px;
@@ -117,12 +128,13 @@ section {
   object-position: 50% 0%;
 }
 
+/* Overlay */
 .overlay {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to top, #ffdce0, transparent, transparent);
+  background: linear-gradient(to top, var(--pink), transparent, transparent);
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -131,14 +143,13 @@ section {
   position: absolute;
   top: 0;
   right: 0;
-  color: #6A0572;
+  color: var(--violet-dark);
   padding: 7px 18px;
   margin: 10px;
   border-radius: 20px;
   letter-spacing: 2px;
   font-size: 0.8rem;
   font-weight: 700;
-  font-family: inherit;
   background: rgba(255, 255, 255, 0.3);
   box-shadow: inset 2px -2px 20px rgba(214, 214, 214, 0.2),
     inset -3px 3px 3px rgba(255, 255, 255, 0.4);
@@ -149,14 +160,14 @@ section {
   position: absolute;
   bottom: 0;
   left: 0;
-  color: #6A0572;
+  color: var(--violet-dark);
   font-weight: 500;
   font-size: 1.1rem;
   line-height: 1.4;
   margin: 0 0 20px 20px;
 }
 
-/* ANIMATED BACKGROUND */
+/* Animated Background */
 .circles {
   position: absolute;
   top: 0;
@@ -174,9 +185,9 @@ section {
   height: 20px;
   background-image: linear-gradient(
     225deg,
-    #ffdce0 0%,
-    #d63384 50%,
-    #e6c8ff 100%
+    var(--pink) 0%,
+    var(--violet-dark) 50%,
+    var(--lavender) 100%
   );
   animation: animate 25s linear infinite;
   bottom: -150px;
