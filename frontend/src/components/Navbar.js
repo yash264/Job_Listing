@@ -25,7 +25,7 @@ const Navbar = () => {
           aria-label="Toggle navigation"
           onClick={() => setOpen((s) => !s)}
         >
-          <span className="toggler-icon" style={{ color: "var(--violet)" }}>
+          <span className="toggler-icon" style={{ color: "var(--secondary)" }}>
             {open ? "✕" : "☰"}
           </span>
         </button>
