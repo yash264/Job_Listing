@@ -1,3 +1,8 @@
+/* effects.css
+   Glassmorphism, overlays, animations, swiper, and heavy effects
+   separated fromlanding.css to avoid PostCSS parsing issues
+*/
+
 /* SECTION BACKGROUND */
 section {
   position: relative;
@@ -60,7 +65,7 @@ section {
   );
 }
 
-/* BUTTON */
+/* BUTTON EFFECTS */
 .btn {
   display: block;
   padding: 10px 40px;
