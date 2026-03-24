@@ -1,6 +1,4 @@
-/* 
-   Authoritative theme variables + global safety overrides
-*/
+
 
 :root {
   --pink: #fceaff;
@@ -58,8 +56,8 @@ a, .nav-link, .navbar-brand, .link-custom {
   color: inherit !important;
 }
 
-/* Inline black override safety */
-*[style*="color: #000"], *[style*="color: black"] {
+/* Neutralize inline color declarations that set black or any color; prefer theme variables */
+*[style*="color:"] {
   color: inherit !important;
 }
 
