@@ -1,19 +1,11 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./landing.css";
 import "./effects.css";
-import logo from "../SvgImage/hiresathi.jpeg";
 
 function Home() {
-  const navigate = useNavigate();
-
-  const redirect = () => {
-    navigate("/Admin/adminreg");
-  };
-
   return (
     <>
-      {/* HERO SECTION */}
       <header className="hero-section d-flex align-items-center justify-content-center">
         <div className="container text-center">
           <h1 className="hero-title">Welcome to HireSathi</h1>
@@ -36,7 +28,6 @@ function Home() {
           </div>
         </div>
 
-        {/* IMAGE SECTION */}
         <div className="hero-image-container">
           <img
             src="https://app.svgator.com/assets/svgator.webapp/log-in-girl.svg"
