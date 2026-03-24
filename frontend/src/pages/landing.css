@@ -9,38 +9,41 @@
   font-family: "Comfortaa", cursive;
 }
 
+
 /* HOME PAGE PASTEL THEME */
+
 
 /* Hero Section Background */
 .hero-section {
-  background: var(--pink);
+  background: var(--pink) !important;
   padding: 80px 20px;
+  width: 100%;
 }
 
 /* Hero Title */
 .hero-title {
-  color: var(--violet-dark);
+  color: var(--violet-dark) !important;
   font-weight: 700;
-  font-size: 3rem;
+  font-size: 2.5rem;
 }
 
 /* Hero Subtitle */
 .hero-subtitle {
-  color: var(--text-dark);
+  color: var(--text-dark) !important;
   font-size: 1.2rem;
   margin-top: 10px;
 }
 
 /* Section Title */
 .section-title {
-  color: var(--violet);
+  color: var(--violet) !important;
   font-weight: 600;
   margin-bottom: 10px;
 }
 
 /* Section Text */
 .section-text {
-  color: var(--text-light);
+  color: var(--text-light) !important;
   font-size: 1rem;
   line-height: 1.6;
 }
