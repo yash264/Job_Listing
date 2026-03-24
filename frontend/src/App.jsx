@@ -1,4 +1,3 @@
-
 import React, { useEffect } from "react";
 import axios from "axios";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -48,27 +47,29 @@ function App() {
       {/* Global Header */}
       <Header />
 
-      <Routes>
-        {/* Public Pages */}
-        <Route path="/" element={<Home />} />
-        <Route path="/features" element={<Features />} />
-        <Route path="/about" element={<About />} />
+      <main style={{ minHeight: "calc(100vh - 160px)" }}>
+        <Routes>
+          {/* Public Pages */}
+          <Route path="/" element={<Home />} />
+          <Route path="/features" element={<Features />} />
+          <Route path="/about" element={<About />} />
 
-        {/* User Pages */}
-        <Route path="/User/register" element={<Register />} />
-        <Route path="/User/login" element={<Login />} />
-        <Route path="/User/dashBoard" element={<DashBoard />} />
-        <Route path="/User/notification" element={<Notification />} />
-        <Route path="/User/applicationWindow" element={<ApplicationWindow />} />
-        <Route path="/User/pastApplication" element={<PastApplication />} />
+          {/* User Pages */}
+          <Route path="/User/register" element={<Register />} />
+          <Route path="/User/login" element={<Login />} />
+          <Route path="/User/dashBoard" element={<DashBoard />} />
+          <Route path="/User/notification" element={<Notification />} />
+          <Route path="/User/applicationWindow" element={<ApplicationWindow />} />
+          <Route path="/User/pastApplication" element={<PastApplication />} />
 
-        {/* Admin Pages */}
-        <Route path="/Admin/adminreg" element={<AdminReg />} />
-        <Route path="/Admin/adminlog" element={<AdminLog />} />
-        <Route path="/Admin/adminDash" element={<AdminDash />} />
-        <Route path="/Admin/createJob" element={<CreateJob />} />
-        <Route path="/Admin/candidates" element={<Candidates />} />
-      </Routes>
+          {/* Admin Pages */}
+          <Route path="/Admin/adminreg" element={<AdminReg />} />
+          <Route path="/Admin/adminlog" element={<AdminLog />} />
+          <Route path="/Admin/adminDash" element={<AdminDash />} />
+          <Route path="/Admin/createJob" element={<CreateJob />} />
+          <Route path="/Admin/candidates" element={<Candidates />} />
+        </Routes>
+      </main>
 
       {/* Global Footer */}
       <Footer />
