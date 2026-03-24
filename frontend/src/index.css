@@ -1,6 +1,6 @@
-/* -------------------------------------------------- */
+
 /* GLOBAL VARIABLES + THEME (paste this at top)      */
-/* -------------------------------------------------- */
+
 :root {
   --pink: #fceaff;          /* baby pink */
   --pink-dark: #f7d6ff;     /* deeper pink */
@@ -14,9 +14,8 @@
   --card-shadow: rgba(0, 0, 0, 0.08);
 }
 
-/* -------------------------------------------------- */
 /* THEME-SAFE GLOBAL OVERRIDES (prevents raw black)  */
-/* -------------------------------------------------- */
+
 html, body, #root {
   color: var(--text-dark) !important;
   font-weight: 400 !important;
@@ -67,11 +66,9 @@ a, .nav-link, .navbar-brand, .link-custom {
 /* Prevent pseudo-elements from showing black text */
 *::before, *::after {
   color: inherit !important;
-}
 
-/* -------------------------------------------------- */
 /* GLOBAL LINKS, BUTTONS, NAVBAR, FOOTER, CARDS       */
-/* -------------------------------------------------- */
+
 a:hover {
   color: var(--violet-dark) !important;
 }
