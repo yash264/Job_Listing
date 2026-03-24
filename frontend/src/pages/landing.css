@@ -9,9 +9,8 @@
   font-family: "Comfortaa", cursive;
 }
 
+/* HOME PAGE PASTEL THEME */
 
-
-/* Hero Section Background */
 .hero-section {
   background: var(--pink) !important;
   padding: 80px 20px;
@@ -22,7 +21,6 @@
   justify-content: center;
 }
 
-/* Hero Title */
 .hero-title {
   color: var(--violet-dark) !important;
   font-weight: 700;
@@ -30,28 +28,24 @@
   margin-bottom: 10px;
 }
 
-/* Hero Subtitle */
 .hero-subtitle {
   color: var(--text-dark) !important;
   font-size: 1.1rem;
   margin-top: 6px;
 }
 
-/* Section Title */
 .section-title {
   color: var(--violet) !important;
   font-weight: 600;
   margin-bottom: 10px;
 }
 
-/* Section Text */
 .section-text {
   color: var(--text-light) !important;
   font-size: 1rem;
   line-height: 1.6;
 }
 
-/* Hero Image */
 .hero-image-container {
   display: flex;
   justify-content: center;
@@ -66,7 +60,6 @@
   box-shadow: 0 8px 24px var(--card-shadow);
 }
 
-/* Buttons */
 .btn-custom {
   background-color: var(--lavender);
   color: var(--text-dark);
@@ -82,7 +75,6 @@
   color: var(--text-dark);
 }
 
-/* Small screens adjustments */
 @media (max-width: 768px) {
   .hero-section {
     flex-direction: column;
