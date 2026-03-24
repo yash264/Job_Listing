@@ -8,7 +8,7 @@ import Features from "./pages/Features";
 import About from "./pages/About";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-import DashBoard from "./pages/Dashboard";
+import Dashboard from "./pages/Dashboard";
 import Notification from "./pages/Notification";
 import ApplicationWindow from "./pages/ApplicationWindow";
 import PastApplication from "./pages/PastApplication";
@@ -21,7 +21,7 @@ import CreateJob from "./pages/Admin/CreateJob";
 import Candidates from "./pages/Admin/Candidates";
 
 // Layout Components
-import Header from "./components/Header";
+import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
 function App() {
@@ -44,25 +44,21 @@ function App() {
 
   return (
     <BrowserRouter>
-      {/* Global Header */}
-      <Header />
+      <Navbar />
 
       <main style={{ minHeight: "calc(100vh - 160px)" }}>
         <Routes>
-          {/* Public Pages */}
           <Route path="/" element={<Home />} />
           <Route path="/features" element={<Features />} />
           <Route path="/about" element={<About />} />
 
-          {/* User Pages */}
           <Route path="/User/register" element={<Register />} />
           <Route path="/User/login" element={<Login />} />
-          <Route path="/User/dashBoard" element={<DashBoard />} />
+          <Route path="/User/dashBoard" element={<Dashboard />} />
           <Route path="/User/notification" element={<Notification />} />
           <Route path="/User/applicationWindow" element={<ApplicationWindow />} />
           <Route path="/User/pastApplication" element={<PastApplication />} />
 
-          {/* Admin Pages */}
           <Route path="/Admin/adminreg" element={<AdminReg />} />
           <Route path="/Admin/adminlog" element={<AdminLog />} />
           <Route path="/Admin/adminDash" element={<AdminDash />} />
@@ -71,7 +67,6 @@ function App() {
         </Routes>
       </main>
 
-      {/* Global Footer */}
       <Footer />
     </BrowserRouter>
   );
