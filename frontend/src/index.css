@@ -1,21 +1,22 @@
-
-/* GLOBAL VARIABLES + THEME (paste this at top)      */
+/* 
+   Authoritative theme variables + global safety overrides
+*/
 
 :root {
-  --pink: #fceaff;          /* baby pink */
-  --pink-dark: #f7d6ff;     /* deeper pink */
-  --violet: #b388eb;        /* pastel violet */
-  --violet-dark: #8f5fe8;   /* deeper violet */
-  --lavender: #e8c7ff;      /* lavender */
-  --lavender-dark: #d8b4ff; /* darker lavender */
-  --text-dark: #4a3b5f;     /* deep muted violet */
-  --text-light: #5a4a6a;    /* soft muted violet */
+  --pink: #fceaff;
+  --pink-dark: #f7d6ff;
+  --violet: #b388eb;
+  --violet-dark: #8f5fe8;
+  --lavender: #e8c7ff;
+  --lavender-dark: #d8b4ff;
+  --text-dark: #4a3b5f;
+  --text-light: #5a4a6a;
   --white: #ffffff;
   --card-shadow: rgba(0, 0, 0, 0.08);
+  --muted: rgba(74, 59, 95, 0.7);
 }
 
-/* THEME-SAFE GLOBAL OVERRIDES (prevents raw black)  */
-
+/* Base */
 html, body, #root {
   color: var(--text-dark) !important;
   font-weight: 400 !important;
@@ -27,52 +28,52 @@ html, body, #root {
   font-family: "Poppins", sans-serif;
 }
 
-/* Ensure headings use theme violet, not black */
+/* Headings */
 h1, h2, h3, h4, h5, h6 {
   color: var(--violet-dark) !important;
   font-weight: 600 !important;
   margin: 0;
 }
 
-/* Neutralize raw-black strong/b tags while keeping emphasis */
+/* Emphasis */
 strong, b {
   color: var(--text-dark) !important;
   font-weight: 600 !important;
 }
 
-/* Links and nav items use theme violet */
+/* Links and nav */
 a, .nav-link, .navbar-brand, .link-custom {
   color: var(--violet) !important;
   font-weight: 500 !important;
   text-decoration: none;
 }
 
-/* Active nav link style */
 .nav-link.active {
   color: var(--violet-dark) !important;
   font-weight: 700 !important;
 }
 
-/* Ensure common containers inherit theme color */
+/* Containers inherit theme color */
 .container, .card, .table, section, header, footer, main, nav {
   color: inherit !important;
 }
 
-/* Last-resort override to prevent inline black color from third-party CSS */
+/* Inline black override safety */
 *[style*="color: #000"], *[style*="color: black"] {
   color: inherit !important;
 }
 
-/* Prevent pseudo-elements from showing black text */
+/* Pseudo elements */
 *::before, *::after {
   color: inherit !important;
+}
 
-/* GLOBAL LINKS, BUTTONS, NAVBAR, FOOTER, CARDS       */
-
+/* Links hover */
 a:hover {
   color: var(--violet-dark) !important;
 }
 
+/* Buttons */
 .btn-custom {
   background-color: var(--lavender);
   color: var(--text-dark);
@@ -98,6 +99,7 @@ a:hover {
   color: var(--white);
 }
 
+/* Navbar */
 .navbar {
   background-color: var(--lavender);
   box-shadow: 0 2px 6px var(--card-shadow);
@@ -105,7 +107,7 @@ a:hover {
 
 .navbar-brand,
 .nav-link {
-  color: var(--text-dark) !important;
+  color: var(--violet) !important;
   font-weight: 500;
 }
 
@@ -113,12 +115,14 @@ a:hover {
   color: var(--violet-dark) !important;
 }
 
+/* Footer */
 .custom-footer {
   background: var(--pink);
   color: var(--text-light);
   padding: 20px 0;
 }
 
+/* Link custom */
 .link-custom {
   color: var(--violet);
   font-weight: 500;
@@ -128,6 +132,7 @@ a:hover {
   color: var(--violet-dark);
 }
 
+/* Card */
 .card {
   background-color: var(--white);
   border: none;
@@ -136,18 +141,17 @@ a:hover {
   padding: 20px;
 }
 
-
-/* FORMS, MODALS, TABLES, PROFILE              
+/* Table */
 .table th {
   color: var(--violet-dark);
   font-weight: 600;
 }
 
-
 .table td {
   color: var(--text-dark);
 }
 
+/* Forms */
 .form-control,
 .form-select {
   border-radius: 8px;
@@ -162,6 +166,7 @@ a:hover {
   box-shadow: 0 0 4px var(--violet);
 }
 
+/* Modals */
 .modal-content {
   background-color: var(--white);
   border-radius: 12px;
@@ -176,18 +181,18 @@ a:hover {
   border-top: 1px solid var(--pink-dark);
 }
 
+/* Spinner */
 .spinner-border {
   color: var(--violet-dark) !important;
 }
 
+/* Profile image */
 .profile-pic {
   border-radius: 10px;
   border: 2px solid var(--violet);
 }
 
-
-/* HERO / MAIN-BG SAFETY (ensures pastel background)  */
-
+/* Main background */
 .main-bg {
   background-color: var(--pink) !important;
   min-height: 100vh;
@@ -196,9 +201,7 @@ a:hover {
   margin: 0;
 }
 
-
-/* HEADER / NAV SPECIFIC OVERRIDES                    */
-
+/* Custom navbar specifics */
 .custom-navbar {
   background-color: var(--lavender) !important;
   color: var(--text-dark) !important;
@@ -215,9 +218,9 @@ a:hover {
 
 .custom-navbar .nav-link:hover {
   color: var(--violet-dark) !important;
-  
-/* HERO-SPECIFIC SAFETY (landing page)                */
+}
 
+/* Hero safety */
 .hero-section,
 .hero-section * {
   color: var(--text-dark) !important;
@@ -229,34 +232,7 @@ a:hover {
   font-weight: 600 !important;
 }
 
-.hero-image {
-  max-width: 320px;
-  width: 100%;
-  height: auto;
-  border-radius: 12px;
-  box-shadow: 0 8px 24px var(--card-shadow);
-}
-
-/* Small screens adjustments */
-@media (max-width: 768px) {
-  .hero-section {
-    flex-direction: column;
-    padding: 40px 16px;
-  }
-
-  .hero-title {
-    font-size: 2rem;
-  }
-
-  .hero-image {
-    max-width: 260px;
-    margin-top: 20px;
-  }
-}
-
-
-/* CLEANUP: remove overly bold global rules           
-
+/* Prevent overly bold global rules */
 body * {
   font-weight: inherit !important;
   color: inherit !important;
