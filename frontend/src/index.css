@@ -184,3 +184,15 @@ h1, h2, h3, h4, h5 {
 .shadow-soft {
   box-shadow: 0 4px 10px var(--card-shadow);
 }
+
+/* -------------------------------------------------- */
+/* MAIN BACKGROUND FIX */
+
+/* -------------------------------------------------- */
+.main-bg {
+  background-color: var(--pink) !important;
+  min-height: 100vh;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
