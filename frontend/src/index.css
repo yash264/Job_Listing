@@ -1,5 +1,5 @@
 /* -------------------------------------------------- */
-/* GLOBAL RESET + BASE COLORS */
+/* GLOBAL VARIABLES + THEME (paste this at top)      */
 /* -------------------------------------------------- */
 :root {
   --pink: #fceaff;          /* baby pink */
@@ -14,29 +14,68 @@
   --card-shadow: rgba(0, 0, 0, 0.08);
 }
 
-body {
+/* -------------------------------------------------- */
+/* THEME-SAFE GLOBAL OVERRIDES (prevents raw black)  */
+/* -------------------------------------------------- */
+html, body, #root {
+  color: var(--text-dark) !important;
+  font-weight: 400 !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   background-color: var(--pink);
-  color: var(--text-dark);
-  font-family: "Poppins", sans-serif;
   margin: 0;
   padding: 0;
+  font-family: "Poppins", sans-serif;
 }
 
-/* -------------------------------------------------- */
-/*  GLOBAL LINKS */
-/* -------------------------------------------------- */
-a {
-  color: var(--violet);
+/* Ensure headings use theme violet, not black */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--violet-dark) !important;
+  font-weight: 600 !important;
+  margin: 0;
+}
+
+/* Neutralize raw-black strong/b tags while keeping emphasis */
+strong, b {
+  color: var(--text-dark) !important;
+  font-weight: 600 !important;
+}
+
+/* Links and nav items use theme violet */
+a, .nav-link, .navbar-brand, .link-custom {
+  color: var(--violet) !important;
+  font-weight: 500 !important;
   text-decoration: none;
 }
 
-a:hover {
-  color: var(--violet-dark);
+/* Active nav link style */
+.nav-link.active {
+  color: var(--violet-dark) !important;
+  font-weight: 700 !important;
+}
+
+/* Ensure common containers inherit theme color */
+.container, .card, .table, section, header, footer, main, nav {
+  color: inherit !important;
+}
+
+/* Last-resort override to prevent inline black color from third-party CSS */
+*[style*="color: #000"], *[style*="color: black"] {
+  color: inherit !important;
+}
+
+/* Prevent pseudo-elements from showing black text */
+*::before, *::after {
+  color: inherit !important;
 }
 
 /* -------------------------------------------------- */
-/*  GLOBAL BUTTONS */
+/* GLOBAL LINKS, BUTTONS, NAVBAR, FOOTER, CARDS       */
 /* -------------------------------------------------- */
+a:hover {
+  color: var(--violet-dark) !important;
+}
+
 .btn-custom {
   background-color: var(--lavender);
   color: var(--text-dark);
@@ -58,13 +97,10 @@ a:hover {
 }
 
 .btn-outline-primary:hover {
-  background-color: var(--violet);
+  background-color: var(--violet) !important;
   color: var(--white);
 }
 
-/* -------------------------------------------------- */
-/*  NAVBAR */
-/* -------------------------------------------------- */
 .navbar {
   background-color: var(--lavender);
   box-shadow: 0 2px 6px var(--card-shadow);
@@ -80,9 +116,6 @@ a:hover {
   color: var(--violet-dark) !important;
 }
 
-/* -------------------------------------------------- */
-/* FOOTER */
-/* -------------------------------------------------- */
 .custom-footer {
   background: var(--pink);
   color: var(--text-light);
@@ -98,9 +131,6 @@ a:hover {
   color: var(--violet-dark);
 }
 
-/* -------------------------------------------------- */
-/*  CARDS */
-/* -------------------------------------------------- */
 .card {
   background-color: var(--white);
   border: none;
@@ -110,7 +140,7 @@ a:hover {
 }
 
 /* -------------------------------------------------- */
-/*  TABLES */
+/* FORMS, MODALS, TABLES, PROFILE                     */
 /* -------------------------------------------------- */
 .table th {
   color: var(--violet-dark);
@@ -121,9 +151,6 @@ a:hover {
   color: var(--text-dark);
 }
 
-/* -------------------------------------------------- */
-/*  FORMS */
-/* -------------------------------------------------- */
 .form-control,
 .form-select {
   border-radius: 8px;
@@ -138,9 +165,6 @@ a:hover {
   box-shadow: 0 0 4px var(--violet);
 }
 
-/* -------------------------------------------------- */
-/* MODALS */
-/* -------------------------------------------------- */
 .modal-content {
   background-color: var(--white);
   border-radius: 12px;
@@ -155,39 +179,17 @@ a:hover {
   border-top: 1px solid var(--pink-dark);
 }
 
-/* -------------------------------------------------- */
-/*  HEADINGS */
-/* -------------------------------------------------- */
-h1, h2, h3, h4, h5 {
-  color: var(--violet-dark);
-  font-weight: 600;
-}
-
-/* -------------------------------------------------- */
-/* SPINNER */
-/* -------------------------------------------------- */
 .spinner-border {
   color: var(--violet-dark) !important;
 }
 
-/* -------------------------------------------------- */
-/*  PROFILE IMAGE */
-/* -------------------------------------------------- */
 .profile-pic {
   border-radius: 10px;
   border: 2px solid var(--violet);
 }
 
 /* -------------------------------------------------- */
-/*  LAYOUT HELPERS */
-/* -------------------------------------------------- */
-.shadow-soft {
-  box-shadow: 0 4px 10px var(--card-shadow);
-}
-
-/* -------------------------------------------------- */
-/* MAIN BACKGROUND FIX */
-
+/* HERO / MAIN-BG SAFETY (ensures pastel background)  */
 /* -------------------------------------------------- */
 .main-bg {
   background-color: var(--pink) !important;
@@ -195,4 +197,72 @@ h1, h2, h3, h4, h5 {
   width: 100%;
   padding: 0;
   margin: 0;
+}
+
+/* -------------------------------------------------- */
+/* HEADER / NAV SPECIFIC OVERRIDES                    */
+/* -------------------------------------------------- */
+.custom-navbar {
+  background-color: var(--lavender) !important;
+  color: var(--text-dark) !important;
+  box-shadow: 0 2px 6px var(--card-shadow);
+  z-index: 1000;
+}
+
+.custom-navbar .navbar-brand,
+.custom-navbar .nav-link,
+.custom-navbar .link-custom {
+  color: var(--violet) !important;
+  font-weight: 500 !important;
+}
+
+.custom-navbar .nav-link:hover {
+  color: var(--violet-dark) !important;
+}
+
+/* -------------------------------------------------- */
+/* HERO-SPECIFIC SAFETY (landing page)                */
+/* -------------------------------------------------- */
+.hero-section,
+.hero-section * {
+  color: var(--text-dark) !important;
+  font-weight: 400 !important;
+}
+
+.hero-title, .hero-subtitle, .section-title, .section-text {
+  color: var(--violet-dark) !important;
+  font-weight: 600 !important;
+}
+
+.hero-image {
+  max-width: 320px;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px var(--card-shadow);
+}
+
+/* Small screens adjustments */
+@media (max-width: 768px) {
+  .hero-section {
+    flex-direction: column;
+    padding: 40px 16px;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-image {
+    max-width: 260px;
+    margin-top: 20px;
+  }
+}
+
+
+/* CLEANUP: remove overly bold global rules           
+/* If any library sets body * { font-weight: 700 }, this neutralizes it */
+body * {
+  font-weight: inherit !important;
+  color: inherit !important;
 }
