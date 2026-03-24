@@ -11,7 +11,7 @@
 /* ===========================
    SECTION BACKGROUND
 =========================== */
-section {
+.section {
   position: relative;
   display: flex;
   justify-content: center;
