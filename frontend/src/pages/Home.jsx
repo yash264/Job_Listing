@@ -2,8 +2,9 @@ import React from "react";
 import { FaCode, FaBell, FaEnvelope } from "react-icons/fa";
 import { ImLocation, ImEnvelop } from "react-icons/im";
 import { Link, useNavigate } from "react-router-dom";
-import "./landing.css";
 import logo from "../SvgImage/hiresathi.jpeg";
+import "./landing.css";
+import "./effects.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 
