@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import { Ferm } from "../../SvgImage/Ferm";
-import { Footer } from "../../components/Footer";
+import { Ferm } from "../../SvgImage/Ferm";   // ✅ Ferm is a named export
+import Footer from "../../components/Footer"; // ✅ Footer is a default export
 import "react-toastify/dist/ReactToastify.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
@@ -19,10 +19,7 @@ function AdminLog() {
     try {
       const response = await axios.post(
         "https://hiresathiserver.vercel.app/api/adminLogin",
-        {
-          gmail,
-          password,
-        }
+        { gmail, password }
       );
 
       if (response.data.message === "Incorrect Password") {
@@ -35,6 +32,7 @@ function AdminLog() {
       }
     } catch (error) {
       console.log(error);
+      toast.error("Login failed. Please try again.");
     }
   };
 
@@ -72,7 +70,10 @@ function AdminLog() {
                     Login
                   </button>
 
-                  <Link to="../Admin/adminReg" className="btn btn-outline-secondary">
+                  <Link
+                    to="../Admin/adminReg"
+                    className="btn btn-outline-secondary"
+                  >
                     New User
                   </Link>
                 </div>
