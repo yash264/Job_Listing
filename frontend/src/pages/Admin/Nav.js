@@ -13,9 +13,9 @@ export const Nav = () => {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg header">
+    <nav className="navbar navbar-expand-lg header bg-pink-purple">
       <div className="container-fluid">
-        <a className="navbar-brand brand" href="#">
+        <a className="navbar-brand brand text-pink-purple" href="#">
           Services
         </a>
 
@@ -31,13 +31,18 @@ export const Nav = () => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link className="nav-link nav-link-custom" to="../admin/adminDash">
+              <Link
+                className="nav-link nav-link-custom text-pink-purple"
+                to="../admin/adminDash"
+              >
                 Dashboard
               </Link>
             </li>
-
             <li className="nav-item">
-              <Link className="nav-link nav-link-custom" to="../admin/createJob">
+              <Link
+                className="nav-link nav-link-custom text-pink-purple"
+                to="../admin/createJob"
+              >
                 Create a Job
               </Link>
             </li>
@@ -46,7 +51,7 @@ export const Nav = () => {
           <div>
             <button
               type="button"
-              className="btn btn-custom"
+              className="btn btn-custom bg-pink-purple"
               onClick={logout}
             >
               Logout
@@ -57,4 +62,3 @@ export const Nav = () => {
     </nav>
   );
 };
-  
