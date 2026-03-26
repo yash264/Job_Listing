@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+
+// Nav is a named export → curly braces
 import { Nav } from "../Nav";
-import { Footer } from "../../components/Footer";
+
+// Footer is a default export → no curly braces
+import Footer from "../../components/Footer";
+
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -31,6 +36,7 @@ function Candidates() {
       setValues(response.data.message);
     } catch (error) {
       console.log(error);
+      toast.error("Failed to fetch candidates");
     }
   };
 
@@ -55,6 +61,7 @@ function Candidates() {
       setMessage(response.data.message);
     } catch (error) {
       console.log(error);
+      toast.error("Failed to fetch profile");
     }
   };
 
@@ -79,6 +86,7 @@ function Candidates() {
       }
     } catch (error) {
       console.log(error);
+      toast.error("Confirmation failed");
     }
   };
 
@@ -229,7 +237,10 @@ function Candidates() {
             </div>
 
             <div className="modal-footer">
-              <button className="btn btn-outline-secondary" data-bs-dismiss="modal">
+              <button
+                className="btn btn-outline-secondary"
+                data-bs-dismiss="modal"
+              >
                 Close
               </button>
             </div>
