@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 // Nav is a named export → curly braces
-import { Nav } from "./Nav";
+import { Nav } from ./Nav";
 
 // Footer is a default export → no curly braces
 import Footer from "../../components/Footer";

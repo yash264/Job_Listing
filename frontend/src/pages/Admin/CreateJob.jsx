@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 // Nav is a named export
-import { Nav } from "./Nav";
+import { Nav } from ./Nav";
 
 import moment from "moment";
 import { CgClose } from "react-icons/cg";
