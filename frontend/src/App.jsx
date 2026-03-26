@@ -45,28 +45,27 @@ function App() {
   return (
     <BrowserRouter>
       <Navbar />
-
       <main style={{ minHeight: "calc(100vh - 160px)" }}>
         <Routes>
+          {/* User Routes */}
           <Route path="/" element={<Home />} />
           <Route path="/features" element={<Features />} />
           <Route path="/about" element={<About />} />
+          <Route path="/user/register" element={<Register />} />
+          <Route path="/user/login" element={<Login />} />
+          <Route path="/user/dashboard" element={<Dashboard />} />
+          <Route path="/user/notification" element={<Notification />} />
+          <Route path="/user/applicationwindow" element={<ApplicationWindow />} />
+          <Route path="/user/pastapplication" element={<PastApplication />} />
 
-          <Route path="/User/register" element={<Register />} />
-          <Route path="/User/login" element={<Login />} />
-          <Route path="/User/dashBoard" element={<Dashboard />} />
-          <Route path="/User/notification" element={<Notification />} />
-          <Route path="/User/applicationWindow" element={<ApplicationWindow />} />
-          <Route path="/User/pastApplication" element={<PastApplication />} />
-
-          <Route path="/Admin/adminreg" element={<AdminReg />} />
-          <Route path="/Admin/adminlog" element={<AdminLog />} />
-          <Route path="/Admin/adminDash" element={<AdminDash />} />
-          <Route path="/Admin/createJob" element={<CreateJob />} />
-          <Route path="/Admin/candidates" element={<Candidates />} />
+          {/* Admin Routes */}
+          <Route path="/admin/adminreg" element={<AdminReg />} />
+          <Route path="/admin/adminlog" element={<AdminLog />} />
+          <Route path="/admin/admindash" element={<AdminDash />} />
+          <Route path="/admin/createjob" element={<CreateJob />} />
+          <Route path="/admin/candidates" element={<Candidates />} />
         </Routes>
       </main>
-
       <Footer />
     </BrowserRouter>
   );
