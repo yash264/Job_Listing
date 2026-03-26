@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+
+// Nav is a named export → curly braces
 import { Nav } from "./Nav";
-import { Footer } from "../../components/Footer";
+
+// Footer is a default export → no curly braces
+import Footer from "../../components/Footer";
+
+// Profile is a named export → curly braces
 import { Profile } from "../../SvgImage/Profile";
+
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -33,6 +40,7 @@ function AdminDash() {
         setState(response.data.message.adminDetails[0].state);
       } catch (error) {
         console.log(error);
+        toast.error("Failed to fetch admin data");
       }
     };
 
@@ -59,6 +67,7 @@ function AdminDash() {
       }
     } catch (error) {
       console.log(error);
+      toast.error("Update failed");
     }
   };
 
@@ -72,7 +81,6 @@ function AdminDash() {
 
       <div className="container px-4 text-center mt-4">
         <div className="row gx-5 align-items-center">
-          
           {/* Profile SVG */}
           <div className="col-md-6 mb-4">
             <div className="p-3">
@@ -108,15 +116,12 @@ function AdminDash() {
                   </tr>
                   <tr>
                     <th>Location</th>
-                    <td>
-                      {city && state ? `${city}, ${state}` : ""}
-                    </td>
+                    <td>{city && state ? `${city}, ${state}` : ""}</td>
                   </tr>
                 </tbody>
               </table>
             </div>
           </div>
-
         </div>
       </div>
 
@@ -131,11 +136,15 @@ function AdminDash() {
           <div className="modal-content card p-3">
             <div className="modal-header">
               <h5 className="modal-title">Update Details</h5>
-              <button type="button" className="btn-close" data-bs-dismiss="modal"></button>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+              ></button>
             </div>
 
             <div className="modal-body">
-              <form className="row g-3">
+              <form className="row g-3" onSubmit={(e) => e.preventDefault()}>
                 <div className="col-md-6">
                   <label className="form-label">Firm Name</label>
                   <input
@@ -198,7 +207,10 @@ function AdminDash() {
             </div>
 
             <div className="modal-footer">
-              <button className="btn btn-outline-secondary" data-bs-dismiss="modal">
+              <button
+                className="btn btn-outline-secondary"
+                data-bs-dismiss="modal"
+              >
                 Close
               </button>
               <button
@@ -209,7 +221,6 @@ function AdminDash() {
                 Save Changes
               </button>
             </div>
-
           </div>
         </div>
       </div>
