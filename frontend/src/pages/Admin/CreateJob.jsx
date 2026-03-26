@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+
+// Nav is a named export
 import { Nav } from "./Nav";
+
 import moment from "moment";
 import { CgClose } from "react-icons/cg";
 import { ToastContainer, toast } from "react-toastify";
@@ -35,6 +38,7 @@ function CreateJob() {
       setValues(response.data.message);
     } catch (error) {
       console.log(error);
+      toast.error("Failed to fetch jobs");
     }
   };
 
@@ -68,13 +72,14 @@ function CreateJob() {
       if (response.data.message === "job created") {
         fetchUserData();
         toast.success("Job Created Successfully");
-      } else if (response.data === "role must be unique") {
+      } else if (response.data.message === "role must be unique") {
         toast.error("Role must be Unique");
       } else {
         toast.error("Some Error Occurred");
       }
     } catch (error) {
       console.log(error);
+      toast.error("Job creation failed");
     }
   };
 
@@ -103,6 +108,7 @@ function CreateJob() {
       }
     } catch (error) {
       console.log(error);
+      toast.error("Job deletion failed");
     }
   };
 
@@ -143,7 +149,7 @@ function CreateJob() {
               </div>
 
               <div className="modal-body">
-                <form className="row g-3">
+                <form className="row g-3" onSubmit={handleSubmit}>
                   <div className="col-md-6">
                     <label className="form-label">Role</label>
                     <input
