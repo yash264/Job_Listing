@@ -112,5 +112,7 @@ Run in development mode (if using nodemon):
 ```bash
 nodemon src/app.js
 ```
-
+## Ux :
+https://www.figma.com/design/teM37dQ5jxbvkYHIpvMZ2M/Untitled?node-id=1-2750&t=xQaJK4HW4gOUOFWv-1
 ---
+    ##"Mohit pawar"
